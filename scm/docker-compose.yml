@@ -1,0 +1,11 @@
+version: '3'
+services:
+  scm_local:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: scm_local
+    container_name: scm_local
+    ports:
+      - 5432:5432
