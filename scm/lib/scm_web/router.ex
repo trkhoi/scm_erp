@@ -13,11 +13,17 @@ defmodule ScmWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/", ScmWeb do
+  scope "/api/v1", ScmWeb do
     pipe_through(:browser)
 
     get("/", PageController, :index)
     get("/hello", HelloController, :index)
+
+    scope "/sales" do
+      scope "/historical_data" do
+        get("/", SalesController, :sales_report)
+      end
+    end
   end
 
   # Other scopes may use custom stacks.
