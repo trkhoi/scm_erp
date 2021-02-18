@@ -23,6 +23,10 @@ defmodule ScmWeb.Router do
       scope "/historical_data" do
         get("/", SalesController, :sales_report)
       end
+
+      scope "/compare_market" do
+        get("/", SalesController, :evaluate_market)
+      end
     end
   end
 

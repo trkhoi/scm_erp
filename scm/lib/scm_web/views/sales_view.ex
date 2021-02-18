@@ -19,4 +19,25 @@ defmodule ScmWeb.SalesView do
       quantity: report.sales.quantity
     }
   end
+
+  def render("evaluate.json", %{eva: eva}) do
+    %{
+      data: %{
+        my_product: %{
+          code: eva.my_product.code,
+          name: eva.my_product.name,
+          price: eva.my_product.price
+        },
+        opponent_product: render_many(eva.opponent_product, ScmWeb.SalesView, "opponent.json")
+      }
+    }
+  end
+
+  def render("opponent.json", opponent) do
+    %{
+      company: opponent.sales.company,
+      price: opponent.sales.price,
+      product_type: opponent.sales.product_type
+    }
+  end
 end
