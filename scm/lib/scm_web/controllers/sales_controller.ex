@@ -11,4 +11,9 @@ defmodule ScmWeb.SalesController do
     IO.inspect(sales)
     render(conn, "sales.json", %{sales: sales})
   end
+
+  def evaluate_market(conn, args) do
+    eva = SalesService.evaluate_market(args)
+    render(conn, "evaluate.json", %{eva: eva})
+  end
 end

@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Scm.Repo
-alias Scm.Schema.{Sales, HistoricalData}
+alias Scm.Schema.{Sales, HistoricalData, Product, Market}
 
 # seed admin
 
@@ -195,4 +195,32 @@ Repo.insert!(%HistoricalData{
   quantity: 1800,
   description: "sample description",
   sales_id: 2
+})
+
+Repo.insert!(%Product{
+  name: "Bánh trung thu",
+  code: "lunar_cake",
+  note: "sample description",
+  price: 40_000.0
+})
+
+Repo.insert!(%Market{
+  company: "Công ty A",
+  code: "a_com",
+  product_type: "lunar_cake",
+  price: 45_000.0
+})
+
+Repo.insert!(%Market{
+  company: "Công ty B",
+  code: "b_com",
+  product_type: "lunar_cake",
+  price: 50_000.0
+})
+
+Repo.insert!(%Market{
+  company: "Công ty C",
+  code: "c_com",
+  product_type: "lunar_cake",
+  price: 37_000.0
 })

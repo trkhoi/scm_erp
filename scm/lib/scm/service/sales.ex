@@ -2,7 +2,7 @@ defmodule Scm.Service.Sales do
   import Ecto.Query, warn: false
   alias Scm.Repo
 
-  alias Scm.Schema.{Sales, HistoricalData}
+  alias Scm.Schema.{Sales, HistoricalData, Product, Market}
 
   def get_sales_with_historical_data(args) do
     Sales
@@ -27,6 +27,40 @@ defmodule Scm.Service.Sales do
               %{
                 month: Map.get(data, :month, 0),
                 quantity: Map.get(data, :quantity, 0)
+              }
+            ]
+        end)
+    }
+  end
+
+  def evaluate_market(args) do
+    product =
+      Product
+      |> select([p], p)
+      |> where([p], p.code == ^args["type"])
+      |> Repo.one()
+
+    market =
+      Market
+      |> select([m], m)
+      |> where([m], m.product_type == ^args["type"])
+      |> Repo.all()
+
+    %{
+      my_product: %{
+        code: Map.get(product, :code, ""),
+        name: Map.get(product, :name, ""),
+        price: Map.get(product, :price, 0.0)
+      },
+      opponent_product:
+        market
+        |> Enum.reduce([], fn opponent, acc ->
+          acc ++
+            [
+              %{
+                company: opponent.company,
+                product_type: opponent.product_type,
+                price: opponent.price
               }
             ]
         end)
