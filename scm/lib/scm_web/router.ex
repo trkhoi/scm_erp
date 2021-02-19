@@ -30,6 +30,10 @@ defmodule ScmWeb.Router do
         get("/", SalesController, :evaluate_market)
       end
     end
+
+    scope "/sales_forecast" do
+      get("/", SalesForecastController, :sales_forecast)
+    end
   end
 
   # Other scopes may use custom stacks.
