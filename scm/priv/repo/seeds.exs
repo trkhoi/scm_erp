@@ -33,168 +33,192 @@ Repo.insert!(%HistoricalData{
   month: 1,
   quantity: 3500,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 220
 })
 
 Repo.insert!(%HistoricalData{
   month: 2,
   quantity: 2700,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 230
 })
 
 Repo.insert!(%HistoricalData{
   month: 3,
   quantity: 2150,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 210
 })
 
 Repo.insert!(%HistoricalData{
   month: 4,
   quantity: 2200,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 220
 })
 
 Repo.insert!(%HistoricalData{
   month: 5,
   quantity: 2270,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 290
 })
 
 Repo.insert!(%HistoricalData{
   month: 6,
   quantity: 2300,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 300
 })
 
 Repo.insert!(%HistoricalData{
   month: 7,
   quantity: 2210,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 295
 })
 
 Repo.insert!(%HistoricalData{
   month: 8,
   quantity: 2185,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 287
 })
 
 Repo.insert!(%HistoricalData{
   month: 9,
   quantity: 2200,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 190
 })
 
 Repo.insert!(%HistoricalData{
   month: 10,
   quantity: 1975,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 195
 })
 
 Repo.insert!(%HistoricalData{
   month: 11,
   quantity: 1990,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 185
 })
 
 Repo.insert!(%HistoricalData{
   month: 12,
   quantity: 3800,
   description: "sample description",
-  sales_id: 1
+  sales_id: 1,
+  shipment: 200
 })
 
 Repo.insert!(%HistoricalData{
   month: 1,
   quantity: 1600,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 350
 })
 
 Repo.insert!(%HistoricalData{
   month: 2,
   quantity: 1550,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 340
 })
 
 Repo.insert!(%HistoricalData{
   month: 3,
   quantity: 1700,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 360
 })
 
 Repo.insert!(%HistoricalData{
   month: 4,
   quantity: 1690,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 375
 })
 
 Repo.insert!(%HistoricalData{
   month: 5,
   quantity: 1570,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 380
 })
 
 Repo.insert!(%HistoricalData{
   month: 6,
   quantity: 2500,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 355
 })
 
 Repo.insert!(%HistoricalData{
   month: 7,
   quantity: 2610,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 360
 })
 
 Repo.insert!(%HistoricalData{
   month: 8,
   quantity: 2585,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 365
 })
 
 Repo.insert!(%HistoricalData{
   month: 9,
   quantity: 1700,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 700
 })
 
 Repo.insert!(%HistoricalData{
   month: 10,
   quantity: 1675,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 710
 })
 
 Repo.insert!(%HistoricalData{
   month: 11,
   quantity: 1590,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 675
 })
 
 Repo.insert!(%HistoricalData{
   month: 12,
   quantity: 1800,
   description: "sample description",
-  sales_id: 2
+  sales_id: 2,
+  shipment: 680
 })
 
 Repo.insert!(%Product{
