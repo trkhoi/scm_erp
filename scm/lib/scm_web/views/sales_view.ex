@@ -16,7 +16,8 @@ defmodule ScmWeb.SalesView do
   def render("historical_data.json", report) do
     %{
       month: report.sales.month,
-      quantity: report.sales.quantity
+      sale: report.sales.quantity,
+      shipment: report.sales.shipment
     }
   end
 
@@ -38,6 +39,20 @@ defmodule ScmWeb.SalesView do
       company: opponent.sales.company,
       price: opponent.sales.price,
       product_type: opponent.sales.product_type
+    }
+  end
+
+  def render("finance_statistic.json", %{fs: fs}) do
+    %{
+      data: render_many(fs, ScmWeb.SalesView, "fs.json")
+    }
+  end
+
+  def render("fs.json", fs) do
+    %{
+      month: fs.sales.month,
+      quantity_sold: fs.sales.quantity,
+      finance_value: fs.sales.finance_value
     }
   end
 end

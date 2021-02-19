@@ -26,7 +26,8 @@ defmodule Scm.Service.Sales do
             [
               %{
                 month: Map.get(data, :month, 0),
-                quantity: Map.get(data, :quantity, 0)
+                quantity: Map.get(data, :quantity, 0),
+                shipment: Map.get(data, :shipment, 0)
               }
             ]
         end)
@@ -65,5 +66,27 @@ defmodule Scm.Service.Sales do
             ]
         end)
     }
+  end
+
+  def finance_statistic(args) do
+    product = Repo.get_by(Product, code: args["product"])
+    price = Map.get(product, :price, 0)
+
+    HistoricalData
+    |> select([hd], hd)
+    |> join(:inner, [hd], s in Sales, on: hd.sales_id == s.id)
+    |> where([hd, s], s.type == ^args["product"])
+    |> Repo.all()
+    |> Enum.reduce([], fn hd, acc ->
+      acc ++
+        [
+          %{
+            month: Map.get(hd, :month, 0),
+            quantity: Map.get(hd, :quantity, 0),
+            finance_value: Map.get(hd, :quantity, 0) * price
+          }
+        ]
+    end)
+    |> IO.inspect()
   end
 end

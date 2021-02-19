@@ -16,4 +16,9 @@ defmodule ScmWeb.SalesController do
     eva = SalesService.evaluate_market(args)
     render(conn, "evaluate.json", %{eva: eva})
   end
+
+  def finance_statistic(conn, args) do
+    fs = SalesService.finance_statistic(args)
+    render(conn, "finance_statistic.json", %{fs: fs})
+  end
 end
