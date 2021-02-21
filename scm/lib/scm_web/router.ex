@@ -10,11 +10,12 @@ defmodule ScmWeb.Router do
   end
 
   pipeline :api do
+    plug(CORSPlug, origin: "http://localhost:4000")
     plug(:accepts, ["json"])
   end
 
   scope "/api/v1", ScmWeb do
-    pipe_through :api
+    pipe_through(:api)
 
     scope "/sales" do
       get("/finance_statstic", SalesController, :finance_statistic)
