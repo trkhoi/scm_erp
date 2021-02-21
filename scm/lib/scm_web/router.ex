@@ -14,10 +14,7 @@ defmodule ScmWeb.Router do
   end
 
   scope "/api/v1", ScmWeb do
-    pipe_through(:browser)
-
-    get("/", PageController, :index)
-    get("/hello", HelloController, :index)
+    pipe_through :api
 
     scope "/sales" do
       get("/finance_statstic", SalesController, :finance_statistic)
@@ -34,6 +31,29 @@ defmodule ScmWeb.Router do
     scope "/sales_forecast" do
       get("/", SalesForecastController, :sales_forecast)
     end
+  end
+
+  scope "/api/v1", ScmWeb do
+    pipe_through(:browser)
+
+    get("/", PageController, :index)
+    get("/hello", HelloController, :index)
+
+    # scope "/sales" do
+    #   get("/finance_statstic", SalesController, :finance_statistic)
+
+    #   scope "/historical_data" do
+    #     get("/", SalesController, :sales_report)
+    #   end
+
+    #   scope "/compare_market" do
+    #     get("/", SalesController, :evaluate_market)
+    #   end
+    # end
+
+    # scope "/sales_forecast" do
+    #   get("/", SalesForecastController, :sales_forecast)
+    # end
   end
 
   # Other scopes may use custom stacks.
