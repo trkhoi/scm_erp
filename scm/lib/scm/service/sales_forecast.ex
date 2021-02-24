@@ -4,6 +4,12 @@ defmodule Scm.Service.SalesForecast do
 
   alias Scm.Schema.{Sales, HistoricalData, SalesForecast, ProductPlan}
 
+  def create_sf(attrs \\ %{}) do
+    %SalesForecast{}
+    |> SalesForecast.changeset(attrs)
+    |> Repo.insert()
+  end
+
   def sales_forecast(args) do
     sales =
       Sales
@@ -23,6 +29,16 @@ defmodule Scm.Service.SalesForecast do
       Enum.member?(months, hd.month)
       |> case do
         true ->
+          create_sf(%{
+            sales_id: sales.id,
+            year: 2021,
+            month: hd.month,
+            promotion: promotion[hd.month],
+            growth: growth,
+            product_type: args["product"],
+            forecast_value: hd.quantity + hd.quantity * growth + promotion[hd.month]
+          })
+
           acc ++
             [
               %{
@@ -32,6 +48,16 @@ defmodule Scm.Service.SalesForecast do
             ]
 
         false ->
+          create_sf(%{
+            sales_id: sales.id,
+            year: 2021,
+            month: hd.month,
+            promotion: promotion[hd.month],
+            growth: growth,
+            product_type: args["product"],
+            forecast_value: hd.quantity + hd.quantity * growth
+          })
+
           acc ++
             [
               %{
@@ -41,7 +67,6 @@ defmodule Scm.Service.SalesForecast do
             ]
       end
     end)
-    |> IO.inspect()
   end
 
   def product_plan(args) do

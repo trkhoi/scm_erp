@@ -9,6 +9,8 @@ defmodule Scm.Schema.Sales do
     field(:type, :string)
 
     has_many(:historical_data, Scm.Schema.HistoricalData)
+    has_one(:sales_forecast, Scm.Schema.SalesForecast)
+    has_one(:sop, Scm.Schema.Sop)
     timestamps()
   end
 

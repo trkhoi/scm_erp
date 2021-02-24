@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Scm.Repo
-alias Scm.Schema.{Sales, HistoricalData, Product, Market, ProductPlan}
+alias Scm.Schema.{Sales, HistoricalData, Product, Market, ProductPlan, Storage}
 
 # seed admin
 
@@ -331,4 +331,76 @@ Repo.insert!(%ProductPlan{
   year: 2021,
   quantity: 3800,
   product_type: "lunar_cake"
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 1
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 2
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 3
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 4
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 5
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 6
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 7
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 8
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 9
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 10
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 11
+})
+
+Repo.insert!(%Storage{
+  product_type: "lunar_cake",
+  inventory: 3850,
+  month: 12
 })
