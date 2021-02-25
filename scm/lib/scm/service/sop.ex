@@ -5,17 +5,28 @@ defmodule Scm.Service.Sop do
   alias Scm.Schema.{Sop, Sales, ProductPlan, SalesForecast, Storage}
 
   def sop_estimate(args) do
+    last_year_inventory = args["inventory"]
+
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     |> Enum.reduce([], fn month, acc ->
-      IO.inspect("this is month " <> Integer.to_string(month))
-      sf_by_month(args["sales_id"], month)
+      sf = sf_by_month(args["sales_id"], month)
       pp = product_plan_by_month("lunar_cake", month)
       cap = capacity("lunar_cake", month)
       working_days()
+      inventory = pp + last_year_inventory - sf
 
-      utilization =
-        (pp / cap)
-        |> IO.inspect()
+      acc ++
+        [
+          %{
+            month: month,
+            forecast_value: sf,
+            production_plan: pp,
+            capacity: cap,
+            working_days: working_days(),
+            utilization: pp / cap,
+            inventory: inventory
+          }
+        ]
     end)
   end
 

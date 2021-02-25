@@ -7,6 +7,7 @@ defmodule ScmWeb.SopController do
   action_fallback(ScmWeb.FallbackController)
 
   def sop(conn, args) do
-    SopService.sop_estimate(args)
+    sop = SopService.sop_estimate(args)
+    render(conn, "sop_estimate.json", %{sop: sop})
   end
 end
