@@ -8,6 +8,17 @@ defmodule ScmWeb.SopController do
 
   def sop(conn, args) do
     sop = SopService.sop_estimate(args)
-    render(conn, "sop_estimate.json", %{sop: sop})
+    mess = SopService.check_utilization(sop)
+    render(conn, "sop_estimate.json", %{sop: sop, mess: mess})
+  end
+
+  def update_sop(conn, args) do
+    SopService.update_fail_sop(args)
+
+    conn
+    |> put_status(:created)
+    |> json(%{
+      data: "OK"
+    })
   end
 end

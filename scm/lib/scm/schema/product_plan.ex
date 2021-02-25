@@ -15,6 +15,6 @@ defmodule Scm.Schema.ProductPlan do
 
   def changeset(product_plan, attrs) do
     product_plan
-    |> cast(attrs, @attrs)
+    |> cast(attrs, [:month, :year, :quantity, :product_type])
   end
 end

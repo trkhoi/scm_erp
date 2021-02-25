@@ -252,7 +252,7 @@ Repo.insert!(%Market{
 Repo.insert!(%ProductPlan{
   month: 1,
   year: 2021,
-  quantity: 4005,
+  quantity: 4010,
   product_type: "lunar_cake"
 })
 

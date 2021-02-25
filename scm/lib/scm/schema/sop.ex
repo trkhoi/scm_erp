@@ -6,15 +6,15 @@ defmodule Scm.Schema.Sop do
     field(:year, :integer)
     field(:month, :integer)
     field(:note, :string)
-    field(:storage, :integer)
-    field(:ratio, :float)
+    field(:capacity, :integer)
+    field(:utilization, :float)
 
     belongs_to(:sales, Scm.Schema.Sales)
 
     timestamps()
   end
 
-  @attrs [:year, :month, :note, :storage, :ratio, :sales_id]
+  @attrs [:year, :month, :note, :capacity, :utilization, :sales_id]
 
   def changeset(sop, attrs) do
     sop

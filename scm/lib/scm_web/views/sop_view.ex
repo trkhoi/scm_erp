@@ -1,8 +1,16 @@
 defmodule ScmWeb.SopView do
   use ScmWeb, :view
 
-  def render("sop_estimate.json", %{sop: sop}) do
+  def render("sop_estimate.json", %{sop: sop, mess: mess}) do
     %{
+      message:
+        case length(mess) do
+          0 ->
+            "All months accepted"
+
+          n when n > 0 ->
+            mess
+        end,
       data: render_many(sop, ScmWeb.SopView, "sop.json")
     }
   end

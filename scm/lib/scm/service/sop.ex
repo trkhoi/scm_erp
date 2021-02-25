@@ -3,6 +3,35 @@ defmodule Scm.Service.Sop do
   alias Scm.Repo
 
   alias Scm.Schema.{Sop, Sales, ProductPlan, SalesForecast, Storage}
+  alias Scm.Service.ProductPlan, as: ProductPlanService
+
+  def create_sop(attrs \\ %{}) do
+    %Sop{}
+    |> Sop.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def update_sop(%Sop{} = sop, attrs) do
+    sop
+    |> Sop.changeset(attrs)
+    |> Repo.update!()
+  end
+
+  def update_fail_sop(args) do
+    sales = Repo.get(Sales, args["sales_id"])
+    IO.inspect(args["quantity"])
+
+    ProductPlanService.get_pp_by_month_product_type(args["month"], sales.type)
+    |> IO.inspect()
+    |> ProductPlanService.update_pp(%{quantity: args["quantity"]})
+  end
+
+  def get_sop_by_sales_id_month(sales_id, month) do
+    Sop
+    |> select([sop], sop)
+    |> where([sop], sop.sales_id == ^sales_id and sop.month == ^month)
+    |> Repo.one()
+  end
 
   def sop_estimate(args) do
     last_year_inventory = args["inventory"]
@@ -14,6 +43,14 @@ defmodule Scm.Service.Sop do
       cap = capacity("lunar_cake", month)
       working_days()
       inventory = pp + last_year_inventory - sf
+
+      create_sop(%{
+        month: month,
+        capacity: cap,
+        year: 2021,
+        utilization: pp / cap,
+        sales_id: args["sales_id"]
+      })
 
       acc ++
         [
@@ -28,6 +65,25 @@ defmodule Scm.Service.Sop do
           }
         ]
     end)
+  end
+
+  def check_utilization(sops) do
+    sop_fail =
+      sops
+      |> Enum.filter(fn sop ->
+        sop.utilization > 0.9
+      end)
+
+    case length(sop_fail) do
+      n when n > 0 ->
+        sop_fail
+        |> Enum.reduce([], fn sop, acc ->
+          acc ++ [sop.month]
+        end)
+
+      0 ->
+        []
+    end
   end
 
   defp product_plan_by_month(product_type, month) do
