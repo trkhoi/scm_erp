@@ -29,6 +29,7 @@ defmodule ScmWeb.Router do
       end
 
       post("/:sales_id/sop", SopController, :sop)
+      put(":sales_id/sop/", SopController, :update_sop)
     end
 
     scope "/sales_forecast" do

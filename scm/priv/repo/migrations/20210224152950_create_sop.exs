@@ -5,8 +5,8 @@ defmodule Scm.Repo.Migrations.CreateSop do
     create table(:sop) do
       add(:month, :integer)
       add(:year, :integer)
-      add(:storage, :integer)
-      add(:ratio, :float)
+      add(:capacity, :integer)
+      add(:utilization, :float)
       add(:note, :string)
 
       add(:sales_id, references(:sales))
