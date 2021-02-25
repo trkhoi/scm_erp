@@ -27,6 +27,8 @@ defmodule ScmWeb.Router do
       scope "/compare_market" do
         get("/", SalesController, :evaluate_market)
       end
+
+      post("/:sales_id/sop", SopController, :sop)
     end
 
     scope "/sales_forecast" do
