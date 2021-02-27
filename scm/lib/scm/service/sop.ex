@@ -59,7 +59,7 @@ defmodule Scm.Service.Sop do
             forecast_value: sf,
             production_plan: pp,
             capacity: cap,
-            working_days: working_days(),
+            working_days: 21,
             utilization: pp / cap,
             inventory: inventory
           }

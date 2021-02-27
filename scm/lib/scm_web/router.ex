@@ -28,6 +28,8 @@ defmodule ScmWeb.Router do
         get("/", SalesController, :evaluate_market)
       end
 
+      get("/:sales_id/demand_daily", MpsController, :daily_mps)
+      get("/:sales_id/demand_weekly", MpsController, :weekly_mps)
       post("/:sales_id/sop", SopController, :sop)
       put(":sales_id/sop/", SopController, :update_sop)
     end
