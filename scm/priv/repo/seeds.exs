@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Scm.Repo
-alias Scm.Schema.{Sales, HistoricalData, Product, Market, ProductPlan, Storage}
+alias Scm.Schema.{Sales, HistoricalData, Product, Market, ProductPlan, Storage, ComponentProduct}
 
 # seed admin
 
@@ -403,4 +403,32 @@ Repo.insert!(%Storage{
   product_type: "lunar_cake",
   inventory: 3850,
   month: 12
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: "07:00",
+  to_time: "08:15",
+  component: "stage 1"
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: "09:00",
+  to_time: "10:15",
+  component: "stage 2"
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: "11:00",
+  to_time: "13:15",
+  component: "stage 3"
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: "15:00",
+  to_time: "18:15",
+  component: "stage 4"
 })

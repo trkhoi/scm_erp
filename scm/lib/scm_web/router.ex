@@ -32,6 +32,7 @@ defmodule ScmWeb.Router do
       get("/:sales_id/demand_weekly", MpsController, :weekly_mps)
       post("/:sales_id/sop", SopController, :sop)
       put(":sales_id/sop/", SopController, :update_sop)
+      get("/:sales_id/detail_scheduling", MpsController, :detail_schedule)
     end
 
     scope "/sales_forecast" do

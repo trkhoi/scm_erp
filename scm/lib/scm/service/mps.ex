@@ -2,7 +2,7 @@ defmodule Scm.Service.Mps do
   import Ecto.Query, warn: false
   alias Scm.Repo
 
-  alias Scm.Schema.{Mps, SalesForecast, ProductPlan, Sales}
+  alias Scm.Schema.{Mps, SalesForecast, ProductPlan, Sales, ComponentProduct, Product}
 
   def create_mps(attrs \\ %{}) do
     %Mps{}
@@ -18,15 +18,53 @@ defmodule Scm.Service.Mps do
     |> Enum.reduce([], fn month, acc ->
       monthly_pp = pp_in_month(sales.type, month)
 
-      acc ++
-        [
-          %{
+      case check_exist_mps(month) |> IO.inspect() do
+        n when n > 0 ->
+          month_mps = get_exist_mps(month)
+
+          acc ++
+            [
+              %{
+                month: month_mps.month,
+                working_days_in_month: month_mps.working_days,
+                daily_mps: month_mps.mps
+              }
+            ]
+
+        0 ->
+          create_mps(%{
             month: month,
-            working_days_in_month: @working_days,
-            daily_mps: ceil(monthly_pp.quantity / @working_days)
-          }
-        ]
+            working_days: @working_days,
+            mps: ceil(monthly_pp.quantity / @working_days),
+            type: "daily",
+            sales_id: 1
+          })
+
+          acc ++
+            [
+              %{
+                month: month,
+                working_days_in_month: @working_days,
+                daily_mps: ceil(monthly_pp.quantity / @working_days),
+                type: "daily"
+              }
+            ]
+      end
     end)
+  end
+
+  def check_exist_mps(month) do
+    Mps
+    |> select([mps], count(mps.id))
+    |> where([mps], mps.month == ^month and mps.type == "daily")
+    |> Repo.one()
+  end
+
+  def get_exist_mps(month) do
+    Mps
+    |> select([mps], mps)
+    |> where([mps], mps.month == ^month and mps.type == "daily")
+    |> Repo.one()
   end
 
   def mps_weekly(mps_daily, args) do
@@ -84,5 +122,23 @@ defmodule Scm.Service.Mps do
     |> select([pp], pp)
     |> where([pp], pp.product_type == ^product_type and pp.month == ^month)
     |> Repo.one()
+  end
+
+  def detail_schedule(args) do
+    Mps
+    |> select([mps], mps)
+    |> where([mps], mps.month == 3 and mps.type == "daily")
+    |> preload([:sales])
+    |> Repo.one()
+  end
+
+  def normalize_schedule(schedule) do
+    product = Repo.get_by(Product, code: schedule.sales.type)
+
+    component_product =
+      ComponentProduct
+      |> select([cp], cp)
+      |> where([cp], cp.product_id == ^product.id)
+      |> Repo.all()
   end
 end

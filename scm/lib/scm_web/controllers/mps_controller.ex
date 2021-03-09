@@ -18,4 +18,10 @@ defmodule ScmWeb.MpsController do
 
     render(conn, "mps_weekly.json", %{mps_weekly: mps_weekly})
   end
+
+  def detail_schedule(conn, args) do
+    MpsService.detail_schedule(args)
+    |> MpsService.normalize_schedule()
+    |> IO.inspect()
+  end
 end
