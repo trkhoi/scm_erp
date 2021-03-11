@@ -19,10 +19,8 @@ defmodule Scm.Service.Sop do
 
   def update_fail_sop(args) do
     sales = Repo.get(Sales, args["sales_id"])
-    IO.inspect(args["quantity"])
 
     ProductPlanService.get_pp_by_month_product_type(args["month"], sales.type)
-    |> IO.inspect()
     |> ProductPlanService.update_pp(%{quantity: args["quantity"]})
   end
 
@@ -91,7 +89,6 @@ defmodule Scm.Service.Sop do
     |> select([pp], pp.quantity)
     |> where([pp], pp.product_type == ^product_type and pp.month == ^month)
     |> Repo.one()
-    |> IO.inspect()
   end
 
   defp sf_by_month(id, month) do
@@ -100,7 +97,6 @@ defmodule Scm.Service.Sop do
     |> join(:inner, [sf], s in Sales, on: s.id == sf.sales_id)
     |> where([sf, s], s.id == ^id and sf.month == ^month)
     |> Repo.one()
-    |> IO.inspect()
   end
 
   defp capacity(product_type, month) do
@@ -108,11 +104,9 @@ defmodule Scm.Service.Sop do
     |> select([s], s.inventory)
     |> where([s], s.product_type == ^product_type and s.month == ^month)
     |> Repo.one()
-    |> IO.inspect()
   end
 
   defp working_days() do
     Enum.random(15..22)
-    |> IO.inspect()
   end
 end

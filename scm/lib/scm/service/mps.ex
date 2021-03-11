@@ -18,7 +18,7 @@ defmodule Scm.Service.Mps do
     |> Enum.reduce([], fn month, acc ->
       monthly_pp = pp_in_month(sales.type, month)
 
-      case check_exist_mps(month) |> IO.inspect() do
+      case check_exist_mps(month) do
         n when n > 0 ->
           month_mps = get_exist_mps(month)
 
@@ -67,6 +67,21 @@ defmodule Scm.Service.Mps do
     |> Repo.one()
   end
 
+  def get_exist_mps_weekly(month) do
+    Mps
+    |> select([mps], mps)
+    |> where([mps], mps.month == ^month and mps.type == "weekly")
+    |> Repo.all()
+  end
+
+  def check_exist_mps_weekly(month) do
+    Mps
+    |> select([mps], mps)
+    |> where([mps], mps.month == ^month and mps.type == "weekly")
+    |> Repo.all()
+    |> length()
+  end
+
   def mps_weekly(mps_daily, args) do
     mps_daily_with_month =
       mps_daily
@@ -75,46 +90,61 @@ defmodule Scm.Service.Mps do
       end)
       |> List.first()
 
-    IO.inspect(mps_daily_with_month)
+    case check_exist_mps_weekly(args["month"]) do
+      n when n > 0 ->
+        get_exist_mps_weekly(args["month"])
+        |> Enum.reduce([], fn mps, acc ->
+          acc ++
+            [
+              %{
+                week: mps.week,
+                weekly_demand: mps.mps,
+                month: mps.month
+              }
+            ]
+        end)
 
-    weekly_demand =
-      [1, 2, 3, 4, 5]
-      |> Enum.reduce([], fn week, accs ->
-        case week do
-          5 ->
-            create_mps(%{
-              week: week,
-              weekly_demand: mps_daily_with_month.daily_mps,
-              month: mps_daily_with_month.month
-            })
-
-            accs ++
-              [
-                %{
+      0 ->
+        weekly_demand =
+          [1, 2, 3, 4, 5]
+          |> Enum.reduce([], fn week, accs ->
+            case week do
+              5 ->
+                create_mps(%{
                   week: week,
                   weekly_demand: mps_daily_with_month.daily_mps,
-                  month: mps_daily_with_month.month
-                }
-              ]
+                  month: mps_daily_with_month.month,
+                  type: "weekly"
+                })
 
-          _ ->
-            create_mps(%{
-              week: week,
-              weekly_demand: mps_daily_with_month.daily_mps * 5,
-              month: mps_daily_with_month.month
-            })
+                accs ++
+                  [
+                    %{
+                      week: week,
+                      weekly_demand: mps_daily_with_month.daily_mps,
+                      month: mps_daily_with_month.month
+                    }
+                  ]
 
-            accs ++
-              [
-                %{
+              _ ->
+                create_mps(%{
                   week: week,
                   weekly_demand: mps_daily_with_month.daily_mps * 5,
-                  month: mps_daily_with_month.month
-                }
-              ]
-        end
-      end)
-      |> IO.inspect()
+                  month: mps_daily_with_month.month,
+                  type: "weekly"
+                })
+
+                accs ++
+                  [
+                    %{
+                      week: week,
+                      weekly_demand: mps_daily_with_month.daily_mps * 5,
+                      month: mps_daily_with_month.month
+                    }
+                  ]
+            end
+          end)
+    end
   end
 
   def pp_in_month(product_type, month) do
@@ -139,6 +169,7 @@ defmodule Scm.Service.Mps do
       ComponentProduct
       |> select([cp], cp)
       |> where([cp], cp.product_id == ^product.id)
+      |> preload([:product])
       |> Repo.all()
   end
 end

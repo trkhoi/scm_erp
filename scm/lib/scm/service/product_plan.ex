@@ -8,7 +8,6 @@ defmodule Scm.Service.ProductPlan do
     product_plan
     |> ProductPlan.changeset(attrs)
     |> Repo.update()
-    |> IO.inspect()
   end
 
   def get_pp_by_month_product_type(month, type) do

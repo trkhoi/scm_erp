@@ -2,6 +2,7 @@ defmodule ScmWeb.MpsController do
   use ScmWeb, :controller
 
   alias Scm.Service.Mps, as: MpsService
+  alias Scm.Service.ComponentProduct, as: ComponentProductService
   alias Scm.Schema.Mps
 
   action_fallback(ScmWeb.FallbackController)
@@ -20,8 +21,30 @@ defmodule ScmWeb.MpsController do
   end
 
   def detail_schedule(conn, args) do
-    MpsService.detail_schedule(args)
-    |> MpsService.normalize_schedule()
-    |> IO.inspect()
+    schedule =
+      MpsService.detail_schedule(args)
+      |> MpsService.normalize_schedule()
+
+    render(conn, "show.json", %{schedule: schedule})
+  end
+
+  def create_schedule(conn, args) do
+    ComponentProductService.get_component_with_date(args)
+    |> case do
+      nil ->
+        {:ok, cp} = ComponentProductService.normalize_args(args)
+
+      # render(conn, )
+      cp ->
+        {:error, :bad_request, reason: "already schedule for this day"}
+    end
+  end
+
+  def update_schedule(conn, args) do
+    {:ok, cp} =
+      ComponentProductService.get_component(args["id"])
+      |> ComponentProductService.update_component(args)
+
+    render(conn, "update_cp.json", %{cp: cp})
   end
 end

@@ -18,8 +18,6 @@ defmodule Scm.Service.SalesForecast do
       |> preload([:historical_data])
       |> Repo.one()
 
-    # |> IO.inspect()
-
     growth = 0.03
     promotion = %{1 => 400, 2 => 500, 3 => 450}
     months = Map.keys(promotion)
@@ -74,6 +72,5 @@ defmodule Scm.Service.SalesForecast do
     |> select([pp], pp)
     |> where([pp], pp.product_type == ^args["product"])
     |> Repo.all()
-    |> IO.inspect()
   end
 end

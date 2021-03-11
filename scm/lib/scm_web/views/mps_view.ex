@@ -28,4 +28,33 @@ defmodule ScmWeb.MpsView do
       week: mps.mps.week
     }
   end
+
+  def render("show.json", %{schedule: schedule}) do
+    %{
+      data: render_many(schedule, ScmWeb.MpsView, "schedule.json")
+    }
+  end
+
+  def render("schedule.json", schedule) do
+    IO.inspect(schedule)
+
+    %{
+      component: schedule.mps.component,
+      from_time: schedule.mps.from_time,
+      to_time: schedule.mps.to_time,
+      id: schedule.mps.id,
+      product: schedule.mps.product.name
+    }
+  end
+
+  def render("update_cp.json", %{cp: cp}) do
+    %{
+      data: %{
+        applied_date: cp.applied_date,
+        task: cp.component,
+        from_time: cp.from_time,
+        to_time: cp.to_time
+      }
+    }
+  end
 end

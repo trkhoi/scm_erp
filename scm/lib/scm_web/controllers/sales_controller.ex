@@ -8,7 +8,6 @@ defmodule ScmWeb.SalesController do
 
   def sales_report(conn, args) do
     sales = SalesService.get_sales_with_historical_data(args)
-    IO.inspect(sales)
     render(conn, "sales.json", %{sales: sales})
   end
 
