@@ -8,12 +8,13 @@ defmodule Scm.Schema.Mps do
     field(:week, :integer)
     field(:working_days, :integer)
     field(:mps, :float)
+    field(:type, :string)
 
     belongs_to(:sales, Scm.Schema.Sales)
     timestamps()
   end
 
-  @attrs [:month, :year, :week, :sales_id, :mps, :working_days]
+  @attrs [:month, :year, :week, :sales_id, :mps, :working_days, :type]
 
   def changeset(historical_data, attrs) do
     historical_data
