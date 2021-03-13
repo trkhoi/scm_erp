@@ -10,6 +10,7 @@ defmodule Scm.Repo.Migrations.CreateSop do
       add(:note, :string)
 
       add(:sales_id, references(:sales))
+      add(:sales_forecast_id, references(:sales_forecast))
       timestamps()
     end
   end

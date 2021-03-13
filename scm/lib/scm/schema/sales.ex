@@ -10,6 +10,7 @@ defmodule Scm.Schema.Sales do
 
     has_many(:historical_data, Scm.Schema.HistoricalData)
     has_one(:sales_forecast, Scm.Schema.SalesForecast)
+    belongs_to(:product, Scm.Schema.Product)
     has_one(:sop, Scm.Schema.Sop)
     timestamps()
   end

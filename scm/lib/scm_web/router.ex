@@ -17,6 +17,11 @@ defmodule ScmWeb.Router do
   scope "/api/v1", ScmWeb do
     pipe_through(:api)
 
+    get("/sales/:sales_id/sop/:sop_id/sop_componnent/", SopComponentController, :index)
+    get("/sales/:sales_id/sop/:sop_id/sop_componnent/:id", SopComponentController, :show)
+    post("/sales/:sales_id/sop/:sop_id/sop_componnent/", SopComponentController, :create)
+    put("/sales/:sales_id/sop/:sop_id/sop_componnent/:id", SopComponentController, :update)
+
     scope "/sales" do
       get("/finance_statstic", SalesController, :finance_statistic)
 
@@ -32,6 +37,14 @@ defmodule ScmWeb.Router do
       get("/:sales_id/demand_weekly", MpsController, :weekly_mps)
       post("/:sales_id/sop", SopController, :sop)
       put("/:sales_id/sop/", SopController, :update_sop)
+
+      # scope "/:sales_id/sop/" do
+      #   get("/:sop_id/sop_componnent/", SopComponentController, :index)
+      #   get("/:sop_id/sop_componnent/:id", SopComponentController, :show)
+      #   post("/:sop_id/sop_componnent/", SopComponentController, :create)
+      #   put("/:sop_id/sop_componnent/:id", SopComponentController, :update)
+      # end
+
       get("/:sales_id/detail_scheduling", MpsController, :detail_schedule)
       post("/:sales_id/detail_scheduling", MpsController, :create_schedule)
       put("/:sales_id/detail_scheduling/:id", MpsController, :update_schedule)
@@ -42,28 +55,28 @@ defmodule ScmWeb.Router do
     end
   end
 
-  scope "/api/v1", ScmWeb do
-    pipe_through(:browser)
+  # scope "/api/v1", ScmWeb do
+  #   pipe_through(:browser)
 
-    get("/", PageController, :index)
-    get("/hello", HelloController, :index)
+  #   get("/", PageController, :index)
+  #   get("/hello", HelloController, :index)
 
-    # scope "/sales" do
-    #   get("/finance_statstic", SalesController, :finance_statistic)
+  # scope "/sales" do
+  #   get("/finance_statstic", SalesController, :finance_statistic)
 
-    #   scope "/historical_data" do
-    #     get("/", SalesController, :sales_report)
-    #   end
+  #   scope "/historical_data" do
+  #     get("/", SalesController, :sales_report)
+  #   end
 
-    #   scope "/compare_market" do
-    #     get("/", SalesController, :evaluate_market)
-    #   end
-    # end
+  #   scope "/compare_market" do
+  #     get("/", SalesController, :evaluate_market)
+  #   end
+  # end
 
-    # scope "/sales_forecast" do
-    #   get("/", SalesForecastController, :sales_forecast)
-    # end
-  end
+  # scope "/sales_forecast" do
+  #   get("/", SalesForecastController, :sales_forecast)
+  # end
+  # end
 
   # Other scopes may use custom stacks.
   # scope "/api", ScmWeb do

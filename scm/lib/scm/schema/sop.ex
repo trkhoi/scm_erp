@@ -10,15 +10,17 @@ defmodule Scm.Schema.Sop do
     field(:utilization, :float)
 
     belongs_to(:sales, Scm.Schema.Sales)
+    belongs_to(:sales_forecast, Scm.Schema.SalesForecast)
 
     timestamps()
   end
 
-  @attrs [:year, :month, :note, :capacity, :utilization, :sales_id]
+  @attrs [:year, :month, :note, :capacity, :utilization, :sales_id, :sales_forecast_id]
 
   def changeset(sop, attrs) do
     sop
     |> cast(attrs, @attrs)
     |> foreign_key_constraint(:sales_id)
+    |> foreign_key_constraint(:sales_forecast_id)
   end
 end

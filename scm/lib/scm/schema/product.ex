@@ -7,6 +7,7 @@ defmodule Scm.Schema.Product do
     field(:code, :string)
     field(:note, :string)
     field(:price, :float)
+    has_many(:sales, Scm.Schema.Sales)
 
     timestamps()
   end
