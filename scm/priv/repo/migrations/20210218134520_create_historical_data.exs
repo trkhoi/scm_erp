@@ -7,6 +7,7 @@ defmodule Scm.Repo.Migrations.CreateHistoricalData do
       add(:title, :string)
       add(:description, :string)
       add(:type, :string)
+      add(:product_id, references(:product))
 
       timestamps()
     end

@@ -17,6 +17,13 @@ defmodule Scm.Service.Sop do
     |> Repo.update!()
   end
 
+  def get_sf(sales_id, month, year) do
+    SalesForecast
+    |> select([sf], sf)
+    |> where([sf], sf.sales_id == ^sales_id and sf.month == ^month and sf.year == ^year)
+    |> Repo.one()
+  end
+
   def update_fail_sop(args) do
     sales = Repo.get(Sales, args["sales_id"])
 
@@ -33,10 +40,11 @@ defmodule Scm.Service.Sop do
 
   def sop_estimate(args) do
     last_year_inventory = args["inventory"]
+    # IO.inspect(get_sf(args["sales_id"], 1, 2021))
 
     [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
     |> Enum.reduce([], fn month, acc ->
-      sf = sf_by_month(args["sales_id"], month)
+      sf = sf_by_month(args["sales_id"], month, 2021)
       pp = product_plan_by_month("lunar_cake", month)
       cap = capacity("lunar_cake", month)
       working_days()
@@ -47,7 +55,8 @@ defmodule Scm.Service.Sop do
         capacity: cap,
         year: 2021,
         utilization: pp / cap,
-        sales_id: args["sales_id"]
+        sales_id: args["sales_id"],
+        sales_forecast_id: get_sf(args["sales_id"], month, 2021).id
       })
 
       acc ++
@@ -91,11 +100,11 @@ defmodule Scm.Service.Sop do
     |> Repo.one()
   end
 
-  defp sf_by_month(id, month) do
+  defp sf_by_month(id, month, year) do
     SalesForecast
     |> select([sf], sf.forecast_value)
     |> join(:inner, [sf], s in Sales, on: s.id == sf.sales_id)
-    |> where([sf, s], s.id == ^id and sf.month == ^month)
+    |> where([sf, s], s.id == ^id and sf.month == ^month and sf.year == ^year)
     |> Repo.one()
   end
 

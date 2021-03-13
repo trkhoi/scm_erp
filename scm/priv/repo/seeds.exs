@@ -11,22 +11,43 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Scm.Repo
-alias Scm.Schema.{Sales, HistoricalData, Product, Market, ProductPlan, Storage, ComponentProduct}
+
+alias Scm.Schema.{
+  Sales,
+  HistoricalData,
+  Product,
+  Market,
+  ProductPlan,
+  Storage,
+  ComponentProduct,
+  SopComponent,
+  Sop,
+  SalesForecast
+}
 
 # seed admin
+
+Repo.insert!(%Product{
+  name: "Bánh trung thu",
+  code: "lunar_cake",
+  note: "sample description",
+  price: 40_000.0
+})
 
 Repo.insert!(%Sales{
   type: "lunar_cake",
   title: "Báo cáo bánh trung thu năm 2020",
   year: 2020,
-  description: "sample description"
+  description: "sample description",
+  product_id: 1
 })
 
 Repo.insert!(%Sales{
   type: "apple_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description"
+  description: "sample description",
+  product_id: 1
 })
 
 Repo.insert!(%HistoricalData{
@@ -219,13 +240,6 @@ Repo.insert!(%HistoricalData{
   description: "sample description",
   sales_id: 2,
   shipment: 680
-})
-
-Repo.insert!(%Product{
-  name: "Bánh trung thu",
-  code: "lunar_cake",
-  note: "sample description",
-  price: 40_000.0
 })
 
 Repo.insert!(%Market{
@@ -431,4 +445,50 @@ Repo.insert!(%ComponentProduct{
   from_time: "15:00",
   to_time: "18:15",
   component: "stage 4"
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  promotion: 400,
+  month: 1,
+  year: 2020,
+  forecast_value: 4005.0,
+  sales_id: 1
+})
+
+Repo.insert!(%Sop{
+  month: 1,
+  year: 2020,
+  capacity: 3850,
+  utilization: 0.88,
+  sales_id: 1,
+  sales_forecast_id: 1
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 1,
+  sop_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Bột",
+  quantity: 400
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 1,
+  sop_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Đường",
+  quantity: 400
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 1,
+  sop_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Hạt sen",
+  quantity: 400
 })
