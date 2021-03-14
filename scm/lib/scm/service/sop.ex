@@ -38,6 +38,13 @@ defmodule Scm.Service.Sop do
     |> Repo.one()
   end
 
+  def get_sop_in_year() do
+    Sop
+    |> select([sop], sop)
+    |> where([sop], sop.year == 2021)
+    |> Repo.all()
+  end
+
   def sop_estimate(args) do
     last_year_inventory = args["inventory"]
     # IO.inspect(get_sf(args["sales_id"], 1, 2021))

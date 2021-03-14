@@ -10,6 +10,21 @@ defmodule Scm.Service.SalesForecast do
     |> Repo.insert()
   end
 
+  def check_sf_in() do
+    SalesForecast
+    |> select([sf], sf)
+    |> where([sf], sf.year == 2021)
+    |> Repo.all()
+    |> length()
+  end
+
+  def get_sf() do
+    SalesForecast
+    |> select([sf], sf)
+    |> where([sf], sf.year == 2021)
+    |> Repo.all()
+  end
+
   def sales_forecast(args) do
     sales =
       Sales
@@ -22,49 +37,65 @@ defmodule Scm.Service.SalesForecast do
     promotion = %{1 => 400, 2 => 500, 3 => 450}
     months = Map.keys(promotion)
 
-    sales.historical_data
-    |> Enum.reduce([], fn hd, acc ->
-      Enum.member?(months, hd.month)
-      |> case do
-        true ->
-          create_sf(%{
-            sales_id: sales.id,
-            year: 2021,
-            month: hd.month,
-            promotion: promotion[hd.month],
-            growth: growth,
-            product_type: args["product"],
-            forecast_value: hd.quantity + hd.quantity * growth + promotion[hd.month]
-          })
-
+    check_sf_in()
+    |> case do
+      n when n > 0 ->
+        get_sf()
+        |> Enum.reduce([], fn sf, acc ->
           acc ++
             [
               %{
+                month: sf.month,
+                forecast_value: sf.forecast_value
+              }
+            ]
+        end)
+
+      0 ->
+        sales.historical_data
+        |> Enum.reduce([], fn hd, acc ->
+          Enum.member?(months, hd.month)
+          |> case do
+            true ->
+              create_sf(%{
+                sales_id: sales.id,
+                year: 2021,
                 month: hd.month,
+                promotion: promotion[hd.month],
+                growth: growth,
+                product_type: args["product"],
                 forecast_value: hd.quantity + hd.quantity * growth + promotion[hd.month]
-              }
-            ]
+              })
 
-        false ->
-          create_sf(%{
-            sales_id: sales.id,
-            year: 2021,
-            month: hd.month,
-            promotion: promotion[hd.month],
-            growth: growth,
-            product_type: args["product"],
-            forecast_value: hd.quantity + hd.quantity * growth
-          })
+              acc ++
+                [
+                  %{
+                    month: hd.month,
+                    forecast_value: hd.quantity + hd.quantity * growth + promotion[hd.month]
+                  }
+                ]
 
-          acc ++
-            [
-              %{
+            false ->
+              create_sf(%{
+                sales_id: sales.id,
+                year: 2021,
                 month: hd.month,
+                promotion: promotion[hd.month],
+                growth: growth,
+                product_type: args["product"],
                 forecast_value: hd.quantity + hd.quantity * growth
-              }
-            ]
-      end
-    end)
+              })
+
+              acc ++
+                [
+                  %{
+                    month: hd.month,
+                    forecast_value: hd.quantity + hd.quantity * growth
+                  }
+                ]
+          end
+        end)
+    end
   end
 
   def product_plan(args) do
