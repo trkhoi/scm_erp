@@ -492,3 +492,114 @@ Repo.insert!(%SopComponent{
   component: "Hạt sen",
   quantity: 400
 })
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  promotion: 400,
+  month: 1,
+  year: 2021,
+  forecast_value: 4005.0,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  promotion: 500,
+  month: 2,
+  year: 2021,
+  forecast_value: 3281.0,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  promotion: 450,
+  month: 3,
+  year: 2021,
+  forecast_value: 2664.5,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 4,
+  year: 2021,
+  forecast_value: 2266.0,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 5,
+  year: 2021,
+  forecast_value: 2338.1,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 6,
+  year: 2021,
+  forecast_value: 2369.0,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 7,
+  year: 2021,
+  forecast_value: 2276.3,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 8,
+  year: 2021,
+  forecast_value: 2250.55,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 9,
+  year: 2021,
+  forecast_value: 2266.0,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 10,
+  year: 2021,
+  forecast_value: 2034.25,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 11,
+  year: 2021,
+  forecast_value: 2049.7,
+  sales_id: 1
+})
+
+Repo.insert!(%SalesForecast{
+  product_type: "lunar_cake",
+  growth: 0.03,
+  month: 12,
+  year: 2021,
+  forecast_value: 3914.0,
+  sales_id: 1
+})
