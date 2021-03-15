@@ -35,6 +35,12 @@ defmodule ScmWeb.MpsView do
     }
   end
 
+  def render("index.json", %{mps: mps}) do
+    %{
+      data: render_one(mps, ScmWeb.MpsView, "schedule.json")
+    }
+  end
+
   def render("schedule.json", schedule) do
     IO.inspect(schedule)
 

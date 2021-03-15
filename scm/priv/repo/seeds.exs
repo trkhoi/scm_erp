@@ -423,28 +423,36 @@ Repo.insert!(%ComponentProduct{
   product_id: 1,
   from_time: "07:00",
   to_time: "08:15",
-  component: "stage 1"
+  component: "stage 1",
+  resource_parent: 2,
+  resource_type: "scheduling"
 })
 
 Repo.insert!(%ComponentProduct{
   product_id: 1,
   from_time: "09:00",
   to_time: "10:15",
-  component: "stage 2"
+  component: "stage 2",
+  resource_parent: 2,
+  resource_type: "scheduling"
 })
 
 Repo.insert!(%ComponentProduct{
   product_id: 1,
   from_time: "11:00",
   to_time: "13:15",
-  component: "stage 3"
+  component: "stage 3",
+  resource_parent: 2,
+  resource_type: "scheduling"
 })
 
 Repo.insert!(%ComponentProduct{
   product_id: 1,
   from_time: "15:00",
   to_time: "18:15",
-  component: "stage 4"
+  component: "stage 4",
+  resource_parent: 2,
+  resource_type: "scheduling"
 })
 
 Repo.insert!(%SalesForecast{
@@ -472,7 +480,9 @@ Repo.insert!(%SopComponent{
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Bột",
-  quantity: 400
+  quantity: 400,
+  resource_parent: 1,
+  resource_type: "supplier"
 })
 
 Repo.insert!(%SopComponent{
@@ -481,7 +491,9 @@ Repo.insert!(%SopComponent{
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Đường",
-  quantity: 400
+  quantity: 400,
+  resource_parent: 1,
+  resource_type: "supplier"
 })
 
 Repo.insert!(%SopComponent{
@@ -490,7 +502,9 @@ Repo.insert!(%SopComponent{
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Hạt sen",
-  quantity: 400
+  quantity: 400,
+  resource_parent: 1,
+  resource_type: "supplier"
 })
 
 Repo.insert!(%SalesForecast{

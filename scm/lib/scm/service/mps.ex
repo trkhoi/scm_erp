@@ -88,6 +88,7 @@ defmodule Scm.Service.Mps do
       |> Enum.filter(fn mps ->
         mps.month == String.to_integer(args["month"])
       end)
+      |> IO.inspect()
       |> List.first()
 
     case check_exist_mps_weekly(args["month"]) do
@@ -112,7 +113,7 @@ defmodule Scm.Service.Mps do
               5 ->
                 create_mps(%{
                   week: week,
-                  weekly_demand: mps_daily_with_month.daily_mps,
+                  mps: mps_daily_with_month.daily_mps,
                   month: mps_daily_with_month.month,
                   type: "weekly"
                 })
@@ -129,7 +130,7 @@ defmodule Scm.Service.Mps do
               _ ->
                 create_mps(%{
                   week: week,
-                  weekly_demand: mps_daily_with_month.daily_mps * 5,
+                  mps: mps_daily_with_month.daily_mps * 5,
                   month: mps_daily_with_month.month,
                   type: "weekly"
                 })
