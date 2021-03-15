@@ -16,7 +16,9 @@ defmodule ScmWeb.SopComponentView do
       from_time: sop_component.from_time,
       to_time: sop_component.to_time,
       quantity: sop_component.quantity,
-      id: sop_component.id
+      id: sop_component.id,
+      resource_parent: sop_component.resource_parent,
+      resource_type: sop_component.resource_type
     }
   end
 end

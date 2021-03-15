@@ -7,13 +7,24 @@ defmodule Scm.Schema.ComponentProduct do
     field(:component, :string)
     field(:from_time, :string)
     field(:to_time, :string)
+    field(:resource_type, :string)
+    field(:resource_parent, :integer)
     field(:applied_date, :utc_datetime)
 
     belongs_to(:product, Scm.Schema.Product)
     timestamps()
   end
 
-  @attrs [:type, :component, :from_time, :to_time, :product_id, :applied_date]
+  @attrs [
+    :type,
+    :component,
+    :from_time,
+    :to_time,
+    :product_id,
+    :applied_date,
+    :resource_type,
+    :resource_parent
+  ]
 
   def changeset(component_product, attrs) do
     component_product

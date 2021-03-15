@@ -56,4 +56,8 @@ defmodule Scm.Service.ComponentProduct do
     }
     |> create_component()
   end
+
+  def get_cp(id) do
+    Repo.get(ComponentProduct, id) |> Repo.preload([:product])
+  end
 end

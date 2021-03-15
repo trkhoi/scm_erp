@@ -25,7 +25,9 @@ defmodule ScmWeb.SopComponentController do
         component: args["component"],
         quantity: args["quantity"],
         sop_id: args["sop_id"],
-        sales_id: args["sales_id"]
+        sales_id: args["sales_id"],
+        resource_parent: 1,
+        resource_type: "supplier"
       }
       |> SopComponentService.create_sop_component()
 

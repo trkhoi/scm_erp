@@ -32,9 +32,11 @@ defmodule ScmWeb.MpsController do
     ComponentProductService.get_component_with_date(args)
     |> case do
       nil ->
-        {:ok, cp} = ComponentProductService.normalize_args(args)
+        {:ok, cp} = ComponentProductService.normalize_args(args) |> IO.inspect()
+        mps = ComponentProductService.get_cp(cp.id)
 
-      # render(conn, )
+        render(conn, "index.json", %{mps: mps})
+
       cp ->
         {:error, :bad_request, reason: "already schedule for this day"}
     end
