@@ -8,6 +8,7 @@ defmodule Scm.Repo.Migrations.CreateMps do
       add(:week, :integer)
       add(:working_days, :integer)
       add(:mps, :float)
+      add(:working_days_in_week, :integer)
 
       add(:sales_id, references(:sales))
       timestamps()
