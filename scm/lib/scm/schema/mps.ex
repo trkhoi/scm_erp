@@ -7,6 +7,7 @@ defmodule Scm.Schema.Mps do
     field(:year, :integer)
     field(:week, :integer)
     field(:working_days, :integer)
+    field(:working_days_in_week, :integer)
     field(:mps, :float)
     field(:type, :string)
 
@@ -14,7 +15,7 @@ defmodule Scm.Schema.Mps do
     timestamps()
   end
 
-  @attrs [:month, :year, :week, :sales_id, :mps, :working_days, :type]
+  @attrs [:month, :year, :week, :sales_id, :mps, :working_days, :type, :working_days_in_week]
 
   def changeset(historical_data, attrs) do
     historical_data

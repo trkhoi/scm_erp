@@ -35,7 +35,7 @@ defmodule Scm.Service.Mps do
           create_mps(%{
             month: month,
             working_days: @working_days,
-            mps: ceil(monthly_pp.quantity / @working_days),
+            mps: monthly_pp.quantity / @working_days,
             type: "daily",
             sales_id: 1
           })
@@ -45,7 +45,7 @@ defmodule Scm.Service.Mps do
               %{
                 month: month,
                 working_days_in_month: @working_days,
-                daily_mps: ceil(monthly_pp.quantity / @working_days),
+                daily_mps: monthly_pp.quantity / @working_days,
                 type: "daily"
               }
             ]
@@ -88,8 +88,8 @@ defmodule Scm.Service.Mps do
       |> Enum.filter(fn mps ->
         mps.month == String.to_integer(args["month"])
       end)
-      |> IO.inspect()
       |> List.first()
+      |> IO.inspect()
 
     case check_exist_mps_weekly(args["month"]) do
       n when n > 0 ->
@@ -100,7 +100,10 @@ defmodule Scm.Service.Mps do
               %{
                 week: mps.week,
                 weekly_demand: mps.mps,
-                month: mps.month
+                month: mps.month,
+                working_days_in_week: mps.working_days_in_week,
+                working_days: mps.working_days,
+                monthly_demand: mps_daily_with_month.daily_mps * @working_days
               }
             ]
         end)
@@ -115,7 +118,10 @@ defmodule Scm.Service.Mps do
                   week: week,
                   mps: mps_daily_with_month.daily_mps,
                   month: mps_daily_with_month.month,
-                  type: "weekly"
+                  type: "weekly",
+                  working_days_in_week: 1,
+                  working_days: mps_daily_with_month.working_days_in_month,
+                  monthly_demand: mps_daily_with_month.daily_mps * @working_days
                 })
 
                 accs ++
@@ -123,7 +129,10 @@ defmodule Scm.Service.Mps do
                     %{
                       week: week,
                       weekly_demand: mps_daily_with_month.daily_mps,
-                      month: mps_daily_with_month.month
+                      month: mps_daily_with_month.month,
+                      working_days_in_week: 1,
+                      working_days: mps_daily_with_month.working_days_in_month,
+                      monthly_demand: mps_daily_with_month.daily_mps * @working_days
                     }
                   ]
 
@@ -132,7 +141,10 @@ defmodule Scm.Service.Mps do
                   week: week,
                   mps: mps_daily_with_month.daily_mps * 5,
                   month: mps_daily_with_month.month,
-                  type: "weekly"
+                  type: "weekly",
+                  working_days_in_week: 5,
+                  working_days: mps_daily_with_month.working_days_in_month,
+                  monthly_demand: mps_daily_with_month.daily_mps * @working_days
                 })
 
                 accs ++
@@ -140,7 +152,10 @@ defmodule Scm.Service.Mps do
                     %{
                       week: week,
                       weekly_demand: mps_daily_with_month.daily_mps * 5,
-                      month: mps_daily_with_month.month
+                      month: mps_daily_with_month.month,
+                      working_days_in_week: 1,
+                      working_days: mps_daily_with_month.working_days_in_month,
+                      monthly_demand: mps_daily_with_month.daily_mps * @working_days
                     }
                   ]
             end

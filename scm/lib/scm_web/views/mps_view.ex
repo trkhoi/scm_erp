@@ -22,10 +22,15 @@ defmodule ScmWeb.MpsView do
   end
 
   def render("mps_week.json", mps) do
+    IO.inspect(mps)
+
     %{
       month: mps.mps.month,
       weekly_demand: mps.mps.weekly_demand,
-      week: mps.mps.week
+      week: mps.mps.week,
+      working_days_in_week: mps.mps.working_days_in_week,
+      working_days_in_month: mps.mps.working_days,
+      monthly_demand: mps.mps.monthly_demand
     }
   end
 

@@ -17,6 +17,8 @@ defmodule ScmWeb.MpsController do
       MpsService.mps_daily(args)
       |> MpsService.mps_weekly(args)
 
+    # |> IO.inspect()
+
     render(conn, "mps_weekly.json", %{mps_weekly: mps_weekly})
   end
 
