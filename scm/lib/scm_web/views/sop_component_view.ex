@@ -9,7 +9,7 @@ defmodule ScmWeb.SopComponentView do
           events: render_many(sop_component, SopComponentView, "sop_component.json")
           # resource: render_many(sop_components, SopComponentView, "sop_component.json")
         }
-        |> Map.put(:resource, %{
+        |> Map.put(:resources, %{
           id: 1,
           name: List.first(sop_component).resource_type,
           parent_id: List.first(sop_component).resource_parent
@@ -21,7 +21,7 @@ defmodule ScmWeb.SopComponentView do
     %{
       data: %{
         events: render_one(sop_component, SopComponentView, "sop_component.json"),
-        resource: render_one(sop_component, SopComponentView, "resource.json")
+        resources: render_one(sop_component, SopComponentView, "resource.json")
       }
     }
   end
