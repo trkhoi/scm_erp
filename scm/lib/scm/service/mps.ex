@@ -171,15 +171,17 @@ defmodule Scm.Service.Mps do
   end
 
   def detail_schedule(args) do
-    Mps
-    |> select([mps], mps)
-    |> where([mps], mps.month == 3 and mps.type == "daily")
-    |> preload([:sales])
-    |> Repo.one()
+    Repo.get(Sales, args["sales_id"])
+
+    # Mps
+    # |> select([mps], mps)
+    # |> where([mps], mps.month == 3 and mps.type == "daily")
+    # |> preload([:sales])
+    # |> Repo.one()
   end
 
-  def normalize_schedule(schedule) do
-    product = Repo.get_by(Product, code: schedule.sales.type)
+  def normalize_schedule(sales) do
+    product = Repo.get_by(Product, code: sales.type)
 
     component_product =
       ComponentProduct

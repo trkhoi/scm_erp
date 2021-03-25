@@ -36,25 +36,45 @@ defmodule ScmWeb.MpsView do
 
   def render("show.json", %{schedule: schedule}) do
     %{
-      data: render_many(schedule, ScmWeb.MpsView, "schedule.json")
+      data:
+        %{
+          events: render_many(schedule, ScmWeb.MpsView, "schedule.json")
+        }
+        |> Map.put(:resources, [
+          %{
+            id: 1,
+            name: List.first(schedule).resource_type,
+            parent_id: List.first(schedule).resource_parent
+          }
+        ])
     }
   end
 
   def render("index.json", %{mps: mps}) do
     %{
-      data: render_one(mps, ScmWeb.MpsView, "schedule.json")
+      data: %{
+        events: render_one(mps, ScmWeb.MpsView, "schedule.json"),
+        resources: render_one(mps, ScmWeb.MpsView, "resource.json")
+      }
     }
   end
 
   def render("schedule.json", schedule) do
-    IO.inspect(schedule)
-
     %{
-      component: schedule.mps.component,
-      from_time: schedule.mps.from_time,
-      to_time: schedule.mps.to_time,
+      title: schedule.mps.component,
+      start: schedule.mps.from_time,
+      end: schedule.mps.to_time,
       id: schedule.mps.id,
-      product: schedule.mps.product.name
+      product: schedule.mps.product.name,
+      resourceId: 2
+    }
+  end
+
+  def render("resource.json", schedule) do
+    %{
+      parentId: schedule.mps.resource_parent,
+      name: schedule.mps.resource_type,
+      id: 2
     }
   end
 

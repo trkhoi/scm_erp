@@ -419,42 +419,6 @@ Repo.insert!(%Storage{
   month: 12
 })
 
-Repo.insert!(%ComponentProduct{
-  product_id: 1,
-  from_time: "07:00",
-  to_time: "08:15",
-  component: "stage 1",
-  resource_parent: 2,
-  resource_type: "scheduling"
-})
-
-Repo.insert!(%ComponentProduct{
-  product_id: 1,
-  from_time: "09:00",
-  to_time: "10:15",
-  component: "stage 2",
-  resource_parent: 2,
-  resource_type: "scheduling"
-})
-
-Repo.insert!(%ComponentProduct{
-  product_id: 1,
-  from_time: "11:00",
-  to_time: "13:15",
-  component: "stage 3",
-  resource_parent: 2,
-  resource_type: "scheduling"
-})
-
-Repo.insert!(%ComponentProduct{
-  product_id: 1,
-  from_time: "15:00",
-  to_time: "18:15",
-  component: "stage 4",
-  resource_parent: 2,
-  resource_type: "scheduling"
-})
-
 Repo.insert!(%SalesForecast{
   product_type: "lunar_cake",
   growth: 0.03,
@@ -616,4 +580,40 @@ Repo.insert!(%SalesForecast{
   year: 2021,
   forecast_value: 3914.0,
   sales_id: 1
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "stage 1",
+  resource_parent: 2,
+  resource_type: "scheduling"
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "stage 2",
+  resource_parent: 2,
+  resource_type: "scheduling"
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "stage 3",
+  resource_parent: 2,
+  resource_type: "scheduling"
+})
+
+Repo.insert!(%ComponentProduct{
+  product_id: 1,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "stage 4",
+  resource_parent: 2,
+  resource_type: "scheduling"
 })

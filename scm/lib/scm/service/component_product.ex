@@ -17,24 +17,21 @@ defmodule Scm.Service.ComponentProduct do
   end
 
   def get_component(id) do
-    Repo.get(ComponentProduct, id)
+    Repo.get(ComponentProduct, id) |> Repo.preload([:product])
   end
 
   def get_component_with_date(args) do
     product = get_product_from_sales(args)
-    {:ok, datetime, 0} = DateTime.from_iso8601(args["applied_date"])
-    IO.inspect(datetime.month)
-    IO.inspect(datetime.day)
-    IO.inspect(datetime.year)
+    {:ok, datetime, 0} = DateTime.from_iso8601(args["from_time"])
 
     ComponentProduct
     |> select([c], c)
     |> where(
       [c],
-      fragment("date_part('month',?)", c.applied_date) == ^datetime.month and
-        fragment("date_part('year',?)", c.applied_date) == ^datetime.year and
-        fragment("date_part('day',?)", c.applied_date) == ^datetime.day and
-        c.product_id == ^product.id and c.from_time == ^args["from_time"]
+      fragment("date_part('month',?)", c.from_time) == ^datetime.month and
+        fragment("date_part('year',?)", c.from_time) == ^datetime.year and
+        fragment("date_part('day',?)", c.from_time) == ^datetime.day and
+        c.product_id == ^product.id
     )
     |> Repo.one()
   end
@@ -46,11 +43,13 @@ defmodule Scm.Service.ComponentProduct do
 
   def normalize_args(args) do
     product = get_product_from_sales(args)
+    IO.inspect(args)
 
     %{
+      resource_parent: args["resource_id"],
+      resource_type: "scheduling",
       from_time: args["from_time"],
       to_time: args["to_time"],
-      applied_date: args["applied_date"],
       component: args["task"],
       product_id: product.id
     }

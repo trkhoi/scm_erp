@@ -5,8 +5,8 @@ defmodule Scm.Schema.ComponentProduct do
   schema "component_product" do
     field(:type, :string)
     field(:component, :string)
-    field(:from_time, :string)
-    field(:to_time, :string)
+    field(:from_time, :utc_datetime)
+    field(:to_time, :utc_datetime)
     field(:resource_type, :string)
     field(:resource_parent, :integer)
     field(:applied_date, :utc_datetime)

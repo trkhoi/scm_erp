@@ -5,8 +5,8 @@ defmodule Scm.Repo.Migrations.AddComponentProduct do
     create table(:component_product) do
       add(:type, :string)
       add(:component, :string)
-      add(:from_time, :string)
-      add(:to_time, :string)
+      add(:from_time, :utc_datetime)
+      add(:to_time, :utc_datetime)
       add(:product_id, references(:product))
       timestamps()
     end
