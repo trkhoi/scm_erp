@@ -1,6 +1,7 @@
 defmodule ScmWeb.MpsController do
   use ScmWeb, :controller
 
+  alias Scm.Repo
   alias Scm.Service.Mps, as: MpsService
   alias Scm.Service.ComponentProduct, as: ComponentProductService
   alias Scm.Schema.Mps
@@ -22,33 +23,43 @@ defmodule ScmWeb.MpsController do
     render(conn, "mps_weekly.json", %{mps_weekly: mps_weekly})
   end
 
-  def detail_schedule(conn, args) do
+  def schedule(conn, args) do
     schedule =
       MpsService.detail_schedule(args)
+      |> IO.inspect()
       |> MpsService.normalize_schedule()
 
     render(conn, "show.json", %{schedule: schedule})
   end
 
+  def detail_schedule(conn, args) do
+    mps = ComponentProductService.get_component(args["id"])
+    render(conn, "index.json", %{mps: mps})
+  end
+
   def create_schedule(conn, args) do
     ComponentProductService.get_component_with_date(args)
+    |> Repo.preload([:product])
     |> case do
       nil ->
-        {:ok, cp} = ComponentProductService.normalize_args(args) |> IO.inspect()
+        {:ok, cp} = ComponentProductService.normalize_args(args)
         mps = ComponentProductService.get_cp(cp.id)
 
         render(conn, "index.json", %{mps: mps})
 
-      cp ->
-        {:error, :bad_request, reason: "already schedule for this day"}
+      mps ->
+        render(conn, "index.json", %{mps: mps})
     end
   end
 
   def update_schedule(conn, args) do
-    {:ok, cp} =
+    {:ok, mps} =
       ComponentProductService.get_component(args["id"])
-      |> ComponentProductService.update_component(args)
+      |> ComponentProductService.update_component(%{
+        from_time: args["from_time"],
+        to_time: args["to_time"]
+      })
 
-    render(conn, "update_cp.json", %{cp: cp})
+    render(conn, "index.json", %{mps: mps})
   end
 end
