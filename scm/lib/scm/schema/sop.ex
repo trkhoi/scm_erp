@@ -6,6 +6,7 @@ defmodule Scm.Schema.Sop do
     field(:year, :integer)
     field(:month, :integer)
     field(:note, :string)
+    field(:resource_type, :string)
     field(:capacity, :integer)
     field(:utilization, :float)
 
@@ -15,7 +16,16 @@ defmodule Scm.Schema.Sop do
     timestamps()
   end
 
-  @attrs [:year, :month, :note, :capacity, :utilization, :sales_id, :sales_forecast_id]
+  @attrs [
+    :year,
+    :month,
+    :note,
+    :capacity,
+    :utilization,
+    :sales_id,
+    :sales_forecast_id,
+    :resource_type
+  ]
 
   def changeset(sop, attrs) do
     sop

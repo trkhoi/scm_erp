@@ -8,6 +8,7 @@ defmodule Scm.Repo.Migrations.CreateSop do
       add(:capacity, :integer)
       add(:utilization, :float)
       add(:note, :string)
+      add(:resource_type, :string)
 
       add(:sales_id, references(:sales))
       add(:sales_forecast_id, references(:sales_forecast))

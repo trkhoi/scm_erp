@@ -34,6 +34,27 @@ Repo.insert!(%Product{
   price: 40_000.0
 })
 
+Repo.insert!(%Product{
+  name: "Bánh pía",
+  code: "pia_cake",
+  note: "sample description",
+  price: 45_000.0
+})
+
+Repo.insert!(%Product{
+  name: "Bánh su",
+  code: "su_cake",
+  note: "sample description",
+  price: 50_000.0
+})
+
+Repo.insert!(%Product{
+  name: "Bánh đậu xanh",
+  code: "green_cake",
+  note: "sample description",
+  price: 40_000.0
+})
+
 Repo.insert!(%Sales{
   type: "lunar_cake",
   title: "Báo cáo bánh trung thu năm 2020",
@@ -43,11 +64,27 @@ Repo.insert!(%Sales{
 })
 
 Repo.insert!(%Sales{
-  type: "apple_cake",
+  type: "pia_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
   description: "sample description",
-  product_id: 1
+  product_id: 2
+})
+
+Repo.insert!(%Sales{
+  type: "su_cake",
+  title: "Báo cáo bánh táo năm 2020",
+  year: 2020,
+  description: "sample description",
+  product_id: 3
+})
+
+Repo.insert!(%Sales{
+  type: "green_cake",
+  title: "Báo cáo bánh táo năm 2020",
+  year: 2020,
+  description: "sample description",
+  product_id: 4
 })
 
 Repo.insert!(%HistoricalData{
@@ -435,7 +472,176 @@ Repo.insert!(%Sop{
   capacity: 3850,
   utilization: 0.88,
   sales_id: 1,
-  sales_forecast_id: 1
+  sales_forecast_id: 1,
+  resource_type: "Bánh trung thu hạt sen"
+})
+
+Repo.insert!(%Sop{
+  month: 1,
+  year: 2020,
+  capacity: 3850,
+  utilization: 0.88,
+  sales_id: 2,
+  resource_type: "Pia Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 2,
+  sop_id: 2,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Bột pía",
+  quantity: 400,
+  resource_parent: 2,
+  resource_type: "Pia Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 2,
+  sop_id: 2,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Đường",
+  quantity: 400,
+  resource_parent: 2,
+  resource_type: "Pia Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 2,
+  sop_id: 2,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Trứng",
+  quantity: 400,
+  resource_parent: 2,
+  resource_type: "Pia Cake"
+})
+
+Repo.insert!(%Sop{
+  month: 1,
+  year: 2020,
+  capacity: 3850,
+  utilization: 0.88,
+  sales_id: 3,
+  resource_type: "Su Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 3,
+  sop_id: 3,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Bột su",
+  quantity: 400,
+  resource_parent: 3,
+  resource_type: "Su Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 3,
+  sop_id: 3,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Muối",
+  quantity: 400,
+  resource_parent: 3,
+  resource_type: "Su Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 3,
+  sop_id: 3,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Kem",
+  quantity: 400,
+  resource_parent: 3,
+  resource_type: "Su Cake"
+})
+
+Repo.insert!(%Sop{
+  month: 1,
+  year: 2020,
+  capacity: 3850,
+  utilization: 0.88,
+  sales_id: 4,
+  resource_type: "Green Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 4,
+  sop_id: 4,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Bột đậu",
+  quantity: 400,
+  resource_parent: 4,
+  resource_type: "Green Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 4,
+  sop_id: 4,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Đậu xanh",
+  quantity: 400,
+  resource_parent: 4,
+  resource_type: "Green Cake"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 4,
+  sop_id: 4,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Mè",
+  quantity: 400,
+  resource_parent: 4,
+  resource_type: "Green Cake"
+})
+
+Repo.insert!(%Sop{
+  month: 1,
+  year: 2020,
+  capacity: 3850,
+  utilization: 0.88,
+  sales_id: 1,
+  resource_type: "Bánh trung thu thâp cẩm"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 1,
+  sop_id: 5,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Bột trung thu",
+  quantity: 400,
+  resource_parent: 5,
+  resource_type: "Bánh trung thu thâp cẩm"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 1,
+  sop_id: 5,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Thịt gà",
+  quantity: 400,
+  resource_parent: 5,
+  resource_type: "Bánh trung thu thâp cẩm"
+})
+
+Repo.insert!(%SopComponent{
+  sales_id: 1,
+  sop_id: 5,
+  from_time: ~U[2021-01-13 00:00:00Z],
+  to_time: ~U[2021-01-15 00:00:00Z],
+  component: "Ớt",
+  quantity: 400,
+  resource_parent: 5,
+  resource_type: "Bánh trung thu thâp cẩm"
 })
 
 Repo.insert!(%SopComponent{
@@ -443,10 +649,10 @@ Repo.insert!(%SopComponent{
   sop_id: 1,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
-  component: "Bột",
+  component: "Bột trung thu",
   quantity: 400,
   resource_parent: 1,
-  resource_type: "supplier"
+  resource_type: "Bánh trung thu hạt sen"
 })
 
 Repo.insert!(%SopComponent{
@@ -457,7 +663,7 @@ Repo.insert!(%SopComponent{
   component: "Đường",
   quantity: 400,
   resource_parent: 1,
-  resource_type: "supplier"
+  resource_type: "Bánh trung thu hạt sen"
 })
 
 Repo.insert!(%SopComponent{
@@ -468,7 +674,7 @@ Repo.insert!(%SopComponent{
   component: "Hạt sen",
   quantity: 400,
   resource_parent: 1,
-  resource_type: "supplier"
+  resource_type: "Bánh trung thu hạt sen"
 })
 
 Repo.insert!(%SalesForecast{

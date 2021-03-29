@@ -17,6 +17,17 @@ defmodule Scm.Service.Sop do
     |> Repo.update!()
   end
 
+  def get_sop_by_sales_id(sales_id) do
+    Sop
+    |> select([sop], sop)
+    |> where([sop], sop.sales_id == ^sales_id)
+    |> Repo.all()
+  end
+
+  def get_by_id(sop_id) do
+    Repo.get(Sop, sop_id)
+  end
+
   def get_sf(sales_id, month, year) do
     SalesForecast
     |> select([sf], sf)

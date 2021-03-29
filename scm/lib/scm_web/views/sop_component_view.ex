@@ -4,18 +4,10 @@ defmodule ScmWeb.SopComponentView do
 
   def render("index.json", %{sop_component: sop_component}) do
     %{
-      data:
-        %{
-          events: render_many(sop_component, SopComponentView, "sop_component.json")
-          # resource: render_many(sop_components, SopComponentView, "sop_component.json")
-        }
-        |> Map.put(:resources, [
-          %{
-            id: 1,
-            name: List.first(sop_component).resource_type,
-            parent_id: List.first(sop_component).resource_parent
-          }
-        ])
+      data: %{
+        events: render_many(sop_component.sop_c, SopComponentView, "sop_component.json"),
+        resources: render_many(sop_component.sop, SopComponentView, "resource.json")
+      }
     }
   end
 
@@ -23,7 +15,7 @@ defmodule ScmWeb.SopComponentView do
     %{
       data: %{
         events: render_one(sop_component, SopComponentView, "sop_component.json"),
-        resources: render_one(sop_component, SopComponentView, "resource.json")
+        resources: render_one(sop_component.sop, SopComponentView, "resource.json")
       }
     }
   end
@@ -35,17 +27,17 @@ defmodule ScmWeb.SopComponentView do
       end: sop_component.to_time,
       quantity: sop_component.quantity,
       id: sop_component.id,
-      resourceId: 1
+      resourceId: sop_component.sop_id
       # resource_parent: sop_component.resource_parent,
       # resource_type: sop_component.resource_type
     }
   end
 
-  def render("resource.json", %{sop_component: sop_component}) do
+  def render("resource.json", %{sop_component: sop}) do
     %{
-      id: 1,
-      name: sop_component.resource_type,
-      parentId: sop_component.resource_parent
+      id: sop.id,
+      name: sop.resource_type,
+      parentId: sop.sales_id
     }
   end
 end
