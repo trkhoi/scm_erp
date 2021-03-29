@@ -21,15 +21,16 @@ defmodule Scm.Service.SopComponent do
     |> select([sc], sc)
     |> where(
       [sc],
-      sc.sales_id == ^args["sales_id"] and sc.sop_id == ^args["sop_id"] and sc.id == ^args["id"]
+      sc.sales_id == ^args["sales_id"] and sc.id == ^args["id"]
     )
+    |> preload([:sop])
     |> Repo.one()
   end
 
   def all_sop_component(args) do
     SopComponent
     |> select([sc], sc)
-    |> where([sc], sc.sales_id == ^args["sales_id"] and sc.sop_id == ^args["sop_id"])
+    |> where([sc], sc.sales_id == ^args["sales_id"])
     |> Repo.all()
   end
 end
