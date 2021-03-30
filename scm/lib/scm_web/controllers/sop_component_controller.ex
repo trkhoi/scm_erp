@@ -7,10 +7,9 @@ defmodule ScmWeb.SopComponentController do
   action_fallback(ScmWeb.FallbackController)
 
   def index(conn, args) do
-    sop_c = SopComponentService.all_sop_component(args) |> IO.inspect()
-
-    product = SopComponentService.get_product_by_id(args["product_id"]) |> IO.inspect()
-    sop = SopService.get_sop_by_sales_id(product.sales_id) |> IO.inspect()
+    product = SopComponentService.get_product_by_id(args["product_id"])
+    sop = SopService.get_sop_by_sales_id(product.sales_id)
+    sop_c = SopComponentService.all_sop_component(product.sales_id)
 
     sop_component = %{
       sop_c: sop_c,
