@@ -9,8 +9,9 @@ defmodule Scm.Schema.SopComponent do
     field(:quantity, :integer)
     field(:resource_type, :string)
     field(:resource_parent, :integer)
+    field(:type, :string)
 
-    belongs_to(:sales, Scm.Schema.Sales)
+    belongs_to(:product, Scm.Schema.Product)
     belongs_to(:sop, Scm.Schema.Sop)
     timestamps()
   end
@@ -18,10 +19,11 @@ defmodule Scm.Schema.SopComponent do
   @attrs [
     :from_time,
     :to_time,
+    :type,
     :component,
     :quantity,
     :sop_id,
-    :sales_id,
+    :product_id,
     :resource_parent,
     :resource_type
   ]

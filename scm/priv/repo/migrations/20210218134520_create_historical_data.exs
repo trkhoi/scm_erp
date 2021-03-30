@@ -2,16 +2,6 @@ defmodule Scm.Repo.Migrations.CreateHistoricalData do
   use Ecto.Migration
 
   def change do
-    create table(:sales) do
-      add(:year, :integer)
-      add(:title, :string)
-      add(:description, :string)
-      add(:type, :string)
-      add(:product_id, references(:product))
-
-      timestamps()
-    end
-
     create table(:historical_data) do
       add(:month, :integer)
       add(:quantity, :integer)
