@@ -4,6 +4,10 @@ defmodule Scm.Service.SopComponent do
 
   alias Scm.Schema.{SopComponent, Product, Sop}
 
+  def get_product_by_id(product_id) do
+    Repo.get(Product, product_id)
+  end
+
   def create_sop_component(attrs \\ %{}) do
     %SopComponent{}
     |> SopComponent.changeset(attrs)
@@ -21,7 +25,7 @@ defmodule Scm.Service.SopComponent do
     |> select([sc], sc)
     |> where(
       [sc],
-      sc.sales_id == ^args["sales_id"] and sc.id == ^args["id"]
+      sc.product_id == ^args["product_id"] and sc.id == ^args["id"]
     )
     |> preload([:sop])
     |> Repo.one()
@@ -30,7 +34,7 @@ defmodule Scm.Service.SopComponent do
   def all_sop_component(args) do
     SopComponent
     |> select([sc], sc)
-    |> where([sc], sc.sales_id == ^args["sales_id"])
+    |> where([sc], sc.product_id == ^args["product_id"])
     |> Repo.all()
   end
 end

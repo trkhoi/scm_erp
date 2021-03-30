@@ -17,10 +17,10 @@ defmodule ScmWeb.Router do
   scope "/api/v1", ScmWeb do
     pipe_through(:api)
 
-    get("/sales/:sales_id/sop_componnent/", SopComponentController, :index)
-    get("/sales/:sales_id/sop_componnent/:id", SopComponentController, :show)
-    post("/sales/:sales_id/sop_componnent/", SopComponentController, :create)
-    put("/sales/:sales_id/sop_componnent/:id", SopComponentController, :update)
+    get("/product/:product_id/sop_componnent/", SopComponentController, :index)
+    get("/product/:product_id/sop_componnent/:id", SopComponentController, :show)
+    post("/product/:product_id/sop_componnent/", SopComponentController, :create)
+    put("/product/:product_id/sop_componnent/:id", SopComponentController, :update)
 
     scope "/sales" do
       get("/finance_statstic", SalesController, :finance_statistic)

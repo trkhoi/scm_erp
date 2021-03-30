@@ -22,69 +22,79 @@ alias Scm.Schema.{
   ComponentProduct,
   SopComponent,
   Sop,
-  SalesForecast
+  SalesForecast,
+  FunctionalArea,
+  ProcedureFlow
 }
 
 # seed admin
-
-Repo.insert!(%Product{
-  name: "Bánh trung thu",
-  code: "lunar_cake",
-  note: "sample description",
-  price: 40_000.0
-})
-
-Repo.insert!(%Product{
-  name: "Bánh pía",
-  code: "pia_cake",
-  note: "sample description",
-  price: 45_000.0
-})
-
-Repo.insert!(%Product{
-  name: "Bánh su",
-  code: "su_cake",
-  note: "sample description",
-  price: 50_000.0
-})
-
-Repo.insert!(%Product{
-  name: "Bánh đậu xanh",
-  code: "green_cake",
-  note: "sample description",
-  price: 40_000.0
-})
 
 Repo.insert!(%Sales{
   type: "lunar_cake",
   title: "Báo cáo bánh trung thu năm 2020",
   year: 2020,
-  description: "sample description",
-  product_id: 1
+  description: "sample description"
 })
 
 Repo.insert!(%Sales{
   type: "pia_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description",
-  product_id: 2
+  description: "sample description"
 })
 
 Repo.insert!(%Sales{
   type: "su_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description",
-  product_id: 3
+  description: "sample description"
 })
 
 Repo.insert!(%Sales{
   type: "green_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description",
-  product_id: 4
+  description: "sample description"
+})
+
+Repo.insert!(%Product{
+  name: "Bánh trung thu hạt sen",
+  code: "lunar_cake",
+  note: "sample description",
+  price: 40_000.0,
+  sales_id: 1
+})
+
+Repo.insert!(%Product{
+  name: "Bánh pía",
+  code: "pia_cake",
+  note: "sample description",
+  price: 45_000.0,
+  sales_id: 2
+})
+
+Repo.insert!(%Product{
+  name: "Bánh su",
+  code: "su_cake",
+  note: "sample description",
+  price: 50_000.0,
+  sales_id: 3
+})
+
+Repo.insert!(%Product{
+  name: "Bánh đậu xanh",
+  code: "green_cake",
+  note: "sample description",
+  price: 40_000.0,
+  sales_id: 4
+})
+
+Repo.insert!(%Product{
+  name: "Bánh trung thu",
+  code: "lunar_cake",
+  note: "sample description",
+  price: 40_000.0,
+  sales_id: 1
 })
 
 Repo.insert!(%HistoricalData{
@@ -486,36 +496,39 @@ Repo.insert!(%Sop{
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 2,
+  product_id: 2,
   sop_id: 2,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Bột pía",
   quantity: 400,
   resource_parent: 2,
-  resource_type: "Pia Cake"
+  resource_type: "Pia Cake",
+  type: "powder"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 2,
+  product_id: 2,
   sop_id: 2,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Đường",
   quantity: 400,
   resource_parent: 2,
-  resource_type: "Pia Cake"
+  resource_type: "Pia Cake",
+  type: "sugar"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 2,
+  product_id: 2,
   sop_id: 2,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Trứng",
   quantity: 400,
   resource_parent: 2,
-  resource_type: "Pia Cake"
+  resource_type: "Pia Cake",
+  type: "egg"
 })
 
 Repo.insert!(%Sop{
@@ -528,36 +541,39 @@ Repo.insert!(%Sop{
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 3,
+  product_id: 3,
   sop_id: 3,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Bột su",
   quantity: 400,
   resource_parent: 3,
-  resource_type: "Su Cake"
+  resource_type: "Su Cake",
+  type: "powder"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 3,
+  product_id: 3,
   sop_id: 3,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Muối",
   quantity: 400,
   resource_parent: 3,
-  resource_type: "Su Cake"
+  resource_type: "Su Cake",
+  type: "salt"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 3,
+  product_id: 3,
   sop_id: 3,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Kem",
   quantity: 400,
   resource_parent: 3,
-  resource_type: "Su Cake"
+  resource_type: "Su Cake",
+  type: "cream"
 })
 
 Repo.insert!(%Sop{
@@ -570,36 +586,39 @@ Repo.insert!(%Sop{
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 4,
+  product_id: 4,
   sop_id: 4,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Bột đậu",
   quantity: 400,
   resource_parent: 4,
-  resource_type: "Green Cake"
+  resource_type: "Green Cake",
+  type: "powder"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 4,
+  product_id: 4,
   sop_id: 4,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Đậu xanh",
   quantity: 400,
   resource_parent: 4,
-  resource_type: "Green Cake"
+  resource_type: "Green Cake",
+  type: "bean"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 4,
+  product_id: 4,
   sop_id: 4,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Mè",
   quantity: 400,
   resource_parent: 4,
-  resource_type: "Green Cake"
+  resource_type: "Green Cake",
+  type: "bean"
 })
 
 Repo.insert!(%Sop{
@@ -612,69 +631,75 @@ Repo.insert!(%Sop{
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 1,
+  product_id: 5,
   sop_id: 5,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Bột trung thu",
   quantity: 400,
   resource_parent: 5,
-  resource_type: "Bánh trung thu thâp cẩm"
+  resource_type: "Bánh trung thu thâp cẩm",
+  type: "powder"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 1,
+  product_id: 5,
   sop_id: 5,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Thịt gà",
   quantity: 400,
   resource_parent: 5,
-  resource_type: "Bánh trung thu thâp cẩm"
+  resource_type: "Bánh trung thu thâp cẩm",
+  type: "meat"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 1,
+  product_id: 5,
   sop_id: 5,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Ớt",
   quantity: 400,
   resource_parent: 5,
-  resource_type: "Bánh trung thu thâp cẩm"
+  resource_type: "Bánh trung thu thâp cẩm",
+  type: "chili"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 1,
+  product_id: 1,
   sop_id: 1,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Bột trung thu",
   quantity: 400,
   resource_parent: 1,
-  resource_type: "Bánh trung thu hạt sen"
+  resource_type: "Bánh trung thu hạt sen",
+  type: "powder"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 1,
+  product_id: 1,
   sop_id: 1,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Đường",
   quantity: 400,
   resource_parent: 1,
-  resource_type: "Bánh trung thu hạt sen"
+  resource_type: "Bánh trung thu hạt sen",
+  type: "sugar"
 })
 
 Repo.insert!(%SopComponent{
-  sales_id: 1,
+  product_id: 1,
   sop_id: 1,
   from_time: ~U[2021-01-13 00:00:00Z],
   to_time: ~U[2021-01-15 00:00:00Z],
   component: "Hạt sen",
   quantity: 400,
   resource_parent: 1,
-  resource_type: "Bánh trung thu hạt sen"
+  resource_type: "Bánh trung thu hạt sen",
+  type: "seed"
 })
 
 Repo.insert!(%SalesForecast{
@@ -822,4 +847,79 @@ Repo.insert!(%ComponentProduct{
   component: "stage 4",
   resource_parent: 2,
   resource_type: "scheduling"
+})
+
+Repo.insert!(%ProcedureFlow{
+  procedure: ["powder", "sugar", "seed", "make", "cook"],
+  product_id: 1
+})
+
+Repo.insert!(%ProcedureFlow{
+  procedure: ["powder", "sugar", "egg", "make"],
+  product_id: 2
+})
+
+Repo.insert!(%ProcedureFlow{
+  procedure: ["powder", "salt", "cream", "make"],
+  product_id: 3
+})
+
+Repo.insert!(%ProcedureFlow{
+  procedure: ["powder", "bean", "sesame", "make"],
+  product_id: 4
+})
+
+Repo.insert!(%ProcedureFlow{
+  procedure: ["powder", "meat", "chili", "make", "run"],
+  product_id: 5
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "powder",
+  name: "Máy trộn bột"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "sugar",
+  name: "Máy quậy đường"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "egg",
+  name: "Máy đánh trứng"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "salt",
+  name: "Máy trộn muối"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "bean",
+  name: "Máy nghiền đậu"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "meat",
+  name: "Máy xay thịt"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "chili",
+  name: "Máy xay ớt"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "seed",
+  name: "Máy trộn mè"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "make",
+  name: "Máy làm khuôn"
+})
+
+Repo.insert!(%FunctionalArea{
+  functional_type: "cook",
+  name: "Lò nướng bánh"
 })

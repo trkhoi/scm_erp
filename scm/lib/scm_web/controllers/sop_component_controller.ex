@@ -7,11 +7,10 @@ defmodule ScmWeb.SopComponentController do
   action_fallback(ScmWeb.FallbackController)
 
   def index(conn, args) do
-    sop_c =
-      SopComponentService.all_sop_component(args)
-      |> IO.inspect()
+    sop_c = SopComponentService.all_sop_component(args) |> IO.inspect()
 
-    sop = SopService.get_sop_by_sales_id(args["sales_id"])
+    product = SopComponentService.get_product_by_id(args["product_id"]) |> IO.inspect()
+    sop = SopService.get_sop_by_sales_id(product.sales_id) |> IO.inspect()
 
     sop_component = %{
       sop_c: sop_c,
@@ -37,7 +36,7 @@ defmodule ScmWeb.SopComponentController do
         component: args["component"],
         quantity: args["quantity"],
         sop_id: args["resource_id"],
-        sales_id: args["sales_id"],
+        product_id: args["product_id"],
         resource_parent: args["resource_id"],
         resource_type: sop.resource_type
       }
@@ -49,7 +48,6 @@ defmodule ScmWeb.SopComponentController do
   def update(conn, args) do
     {:ok, sop_component} =
       SopComponentService.get_sop_component(args)
-      |> IO.inspect()
       |> SopComponentService.update_sop_component(%{
         from_time: args["from_time"],
         to_time: args["to_time"]
