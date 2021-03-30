@@ -22,6 +22,9 @@ defmodule ScmWeb.Router do
     post("/product/:product_id/sop_componnent/", SopComponentController, :create)
     put("/product/:product_id/sop_componnent/:id", SopComponentController, :update)
 
+    resources "/functional_planning", FunctionalAreaController, only: [:index, :create, :update] do
+    end
+
     scope "/sales" do
       get("/finance_statstic", SalesController, :finance_statistic)
 

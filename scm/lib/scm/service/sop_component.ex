@@ -31,10 +31,11 @@ defmodule Scm.Service.SopComponent do
     |> Repo.one()
   end
 
-  def all_sop_component(args) do
+  def all_sop_component(sales_id) do
     SopComponent
     |> select([sc], sc)
-    |> where([sc], sc.product_id == ^args["product_id"])
+    |> join(:inner, [sc], p in Product, on: sc.product_id == p.id)
+    |> where([sc, p], p.sales_id == ^sales_id)
     |> Repo.all()
   end
 end

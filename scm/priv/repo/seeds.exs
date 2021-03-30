@@ -24,6 +24,7 @@ alias Scm.Schema.{
   Sop,
   SalesForecast,
   FunctionalArea,
+  FunctionalAreaFeature,
   ProcedureFlow
 }
 
@@ -922,4 +923,149 @@ Repo.insert!(%FunctionalArea{
 Repo.insert!(%FunctionalArea{
   functional_type: "cook",
   name: "Lò nướng bánh"
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Sơ chế bột",
+  functional_area_id: 1
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Trộn bột",
+  functional_area_id: 1
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Hấp bột",
+  functional_area_id: 1
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chọn loại đường",
+  functional_area_id: 2
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Nung chảy đường",
+  functional_area_id: 2
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Trộn đường",
+  functional_area_id: 2
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Đập trứng",
+  functional_area_id: 3
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Đánh trứng",
+  functional_area_id: 3
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chọn loại muối",
+  functional_area_id: 4
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Nung chảy muối",
+  functional_area_id: 4
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Trộn muối",
+  functional_area_id: 4
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Bóc vỏ đậu",
+  functional_area_id: 5
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Luộc đậu",
+  functional_area_id: 5
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Nghiền đậu",
+  functional_area_id: 5
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Rửa thịt",
+  functional_area_id: 6
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Hấp thịt",
+  functional_area_id: 6
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Ướp gia vị",
+  functional_area_id: 6
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Xay thịt",
+  functional_area_id: 6
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chọn loại ớt",
+  functional_area_id: 7
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Loại bỏ hột ớt",
+  functional_area_id: 7
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Trộn ớt",
+  functional_area_id: 7
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chọn loại mè",
+  functional_area_id: 8
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Rửa mè",
+  functional_area_id: 8
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Trộn mè",
+  functional_area_id: 8
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chọn khuôn bánh",
+  functional_area_id: 9
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Tiến hành lập khuôn",
+  functional_area_id: 9
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chọn nhiệt độ",
+  functional_area_id: 10
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Chuẩn bị lò",
+  functional_area_id: 10
+})
+
+Repo.insert!(%FunctionalAreaFeature{
+  feature_name: "Nướng bánh",
+  functional_area_id: 10
 })
