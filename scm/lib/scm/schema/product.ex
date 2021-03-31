@@ -9,6 +9,7 @@ defmodule Scm.Schema.Product do
     field(:price, :float)
 
     belongs_to(:sales, Scm.Schema.Sales)
+    has_many(:sop_component, Scm.Schema.SopComponent)
 
     timestamps()
   end
