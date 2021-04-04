@@ -39,26 +39,34 @@ defmodule Scm.Service.FunctionalArea do
     end)
   end
 
-  def make_event() do
+  def make_event(list_sop_id) do
     make = get_functional_area("make")
 
-    all_product()
+    # all_product()
+    list_sop_id
     |> Enum.map(fn product ->
       %{
         functional_area_id: make.id,
-        product_id: product.id,
+        sop_id: product,
+        # product_id: product.id,
+        from_time: DateTime.utc_now(),
+        to_time: DateTime.utc_now() |> DateTime.add(3600, :second),
         title: "Lập khuôn bánh"
       }
     end)
   end
 
-  def cook_event() do
+  def cook_event(list_sop_id) do
     cook = get_functional_area("cook")
 
-    all_product()
+    # all_product()
+    list_sop_id
     |> Enum.map(fn product ->
       %{
         functional_area_id: cook.id,
+        sop_id: product,
+        from_time: DateTime.utc_now(),
+        to_time: DateTime.utc_now() |> DateTime.add(7200, :second),
         # product_id: product.id,
         title: "Nướng bánh"
       }
@@ -86,6 +94,7 @@ defmodule Scm.Service.FunctionalArea do
     |> Enum.map(fn sc ->
       %{
         # product_id: sc.product_id,
+        sop_id: sc.sop_id,
         from_time: sc.from_time,
         to_time: sc.to_time,
         title: sc.component,
@@ -112,5 +121,43 @@ defmodule Scm.Service.FunctionalArea do
     fat
     |> FunctionalAreaPlanning.changeset(attrs)
     |> Repo.update()
+  end
+
+  def get_list_sop_id(events) do
+    event_sop_id =
+      events
+      |> Enum.reduce([], fn event, acc ->
+        case Map.has_key?(event, :sop_id) do
+          true -> acc ++ [event.sop_id]
+          false -> acc
+        end
+      end)
+      |> Enum.uniq()
+  end
+
+  def get_all_fap(list_sop_id) do
+    FunctionalAreaPlanning
+    |> select([fap], fap)
+    |> where([fap], fap.sop_id in ^list_sop_id)
+    |> Repo.all()
+  end
+
+  def check_duplicate_recode(all_event) do
+    list_sop = get_list_sop_id(all_event)
+
+    all_sop_id =
+      FunctionalAreaPlanning
+      |> select([fap], fap.sop_id)
+      |> Repo.all()
+      |> Enum.uniq()
+
+    check_duplicate_recode =
+      list_sop
+      |> Enum.reduce([], fn sop, _acc ->
+        case sop in all_sop_id do
+          true -> true
+          false -> false
+        end
+      end)
   end
 end
