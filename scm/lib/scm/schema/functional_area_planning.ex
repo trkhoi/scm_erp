@@ -9,11 +9,12 @@ defmodule Scm.Schema.FunctionalAreaPlanning do
     field(:type, :string)
 
     belongs_to(:functional_area, Scm.Schema.FunctionalArea)
+    belongs_to(:sop, Scm.Schema.Sop)
 
     timestamps()
   end
 
-  @attrs [:functional_area_id, :from_time, :to_time, :title, :type]
+  @attrs [:functional_area_id, :from_time, :to_time, :title, :type, :sop_id]
 
   def changeset(functional_area_planning, attrs) do
     functional_area_planning

@@ -9,6 +9,7 @@ defmodule Scm.Repo.Migrations.FunctionalAreaPlanning do
       add(:type, :string)
       # add(:sop_component_id, references(:sop_component))
       add(:functional_area_id, references(:functional_area))
+      add(:sop_id, references(:sop))
 
       timestamps()
     end

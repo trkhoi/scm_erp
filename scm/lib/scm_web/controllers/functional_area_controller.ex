@@ -13,19 +13,33 @@ defmodule ScmWeb.FunctionalAreaController do
     events =
       FunctionalAreaService.create_data()
       |> FunctionalAreaService.process_data_event()
+      |> IO.inspect()
 
-    make_event = FunctionalAreaService.make_event()
-    cook_event = FunctionalAreaService.cook_event()
+    list_sop_id = FunctionalAreaService.get_list_sop_id(events)
+
+    make_event = FunctionalAreaService.make_event(list_sop_id)
+    cook_event = FunctionalAreaService.cook_event(list_sop_id)
+
+    all_event = events ++ make_event ++ cook_event
 
     all_event =
-      (events ++ make_event ++ cook_event)
-      |> Enum.map(fn eve ->
-        FunctionalAreaService.create_fat(eve)
-        |> case do
-          {:ok, value} -> value
-          {:error, err} -> err
-        end
-      end)
+      all_event
+      |> FunctionalAreaService.check_duplicate_recode()
+      |> case do
+        true ->
+          FunctionalAreaService.get_all_fap(list_sop_id)
+
+        false ->
+          all_event
+          |> Enum.map(fn eve ->
+            FunctionalAreaService.create_fat(eve)
+            |> case do
+              {:ok, value} -> value
+              {:error, err} -> err
+            end
+          end)
+          |> IO.inspect()
+      end
 
     fa = %{
       events: all_event,
