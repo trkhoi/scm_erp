@@ -43,7 +43,6 @@ defmodule Scm.Service.ComponentProduct do
 
   def normalize_args(args) do
     product = get_product_from_sales(args)
-    IO.inspect(args)
 
     %{
       resource_parent: args["resource_id"],

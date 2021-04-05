@@ -13,7 +13,6 @@ defmodule ScmWeb.FunctionalAreaController do
     events =
       FunctionalAreaService.create_data()
       |> FunctionalAreaService.process_data_event()
-      |> IO.inspect()
 
     list_sop_id = FunctionalAreaService.get_list_sop_id(events)
 
@@ -25,6 +24,7 @@ defmodule ScmWeb.FunctionalAreaController do
     all_event =
       all_event
       |> FunctionalAreaService.check_duplicate_recode()
+      |> IO.inspect()
       |> case do
         true ->
           FunctionalAreaService.get_all_fap(list_sop_id)
@@ -38,8 +38,9 @@ defmodule ScmWeb.FunctionalAreaController do
               {:error, err} -> err
             end
           end)
-          |> IO.inspect()
       end
+
+    # |> IO.inspect()
 
     fa = %{
       events: all_event,
@@ -50,13 +51,16 @@ defmodule ScmWeb.FunctionalAreaController do
   end
 
   def create(conn, args) do
+    list_sop_id = FunctionalAreaService.get_fap_by_resource_id(args["resource_id"])
+
     {:ok, fat} =
       FunctionalAreaService.create_fat(%{
         from_time: args["from_time"],
         to_time: args["to_time"],
         title: args["component"],
         functional_area_id: args["resource_id"],
-        type: args["type"]
+        type: args["type"],
+        sop_id: List.first(list_sop_id)
       })
 
     resource = FunctionalAreaService.get_fa(args["resource_id"])

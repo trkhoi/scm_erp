@@ -51,7 +51,8 @@ defmodule Scm.Service.FunctionalArea do
         # product_id: product.id,
         from_time: DateTime.utc_now(),
         to_time: DateTime.utc_now() |> DateTime.add(3600, :second),
-        title: "Lập khuôn bánh"
+        title: "Lập khuôn bánh",
+        type: "make"
       }
     end)
   end
@@ -68,7 +69,8 @@ defmodule Scm.Service.FunctionalArea do
         from_time: DateTime.utc_now(),
         to_time: DateTime.utc_now() |> DateTime.add(7200, :second),
         # product_id: product.id,
-        title: "Nướng bánh"
+        title: "Nướng bánh",
+        type: "cook"
       }
     end)
   end
@@ -98,7 +100,8 @@ defmodule Scm.Service.FunctionalArea do
         from_time: sc.from_time,
         to_time: sc.to_time,
         title: sc.component,
-        functional_area_id: resource_id
+        functional_area_id: resource_id,
+        type: type
       }
     end)
   end
@@ -159,5 +162,12 @@ defmodule Scm.Service.FunctionalArea do
           false -> false
         end
       end)
+  end
+
+  def get_fap_by_resource_id(resource_id) do
+    FunctionalAreaPlanning
+    |> select([fap], fap.sop_id)
+    |> where([fap], fap.functional_area_id == ^resource_id)
+    |> Repo.all()
   end
 end

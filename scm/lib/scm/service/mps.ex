@@ -89,7 +89,6 @@ defmodule Scm.Service.Mps do
         mps.month == String.to_integer(args["month"])
       end)
       |> List.first()
-      |> IO.inspect()
 
     case check_exist_mps_weekly(args["month"]) do
       n when n > 0 ->
