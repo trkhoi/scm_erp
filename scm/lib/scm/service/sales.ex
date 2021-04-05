@@ -87,6 +87,5 @@ defmodule Scm.Service.Sales do
           }
         ]
     end)
-    |> IO.inspect()
   end
 end
