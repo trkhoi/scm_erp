@@ -17,7 +17,7 @@ config :backend, ScmWeb.Endpoint,
   load_from_system_env: true
 
 # Do not print debug messages in production
-config :logger, level: :info
+config :logger, level: :info, :ssl
 
 # ## SSL Support
 #
