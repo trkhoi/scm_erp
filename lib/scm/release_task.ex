@@ -15,6 +15,7 @@ defmodule Scm.ReleaseTasks do
     IO.puts(System.fetch_env!("DATABASE_NAME"))
     IO.puts(System.fetch_env!("DATABASE_HOSTNAME"))
     IO.puts(System.fetch_env!("DATABASE_PORT"))
+    IO.puts(System.fetch_env!("DATABASE_URL"))
 
     for repo <- repos() do
       {:ok, _, _} = Migrator.with_repo(repo, &Migrator.run(&1, :up, all: true))
