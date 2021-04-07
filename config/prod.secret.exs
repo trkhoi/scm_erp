@@ -25,7 +25,8 @@ config :scm, Scm.Repo,
   # in microseconds, defaults to 50
   queue_target: 3000,
   # in microseconds, defaults to 1000
-  queue_interval: 6000
+  queue_interval: 6000,
+  ssl: true
 
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
