@@ -10,6 +10,8 @@ database_url =
     environment variable DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
+  |> IO.inspect()
+  
 
 config :scm, Scm.Repo,
   # ssl: true,
