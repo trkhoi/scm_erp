@@ -14,8 +14,7 @@ config :backend, ScmWeb.Endpoint,
   check_origin: false,
   host: "scmbe.herokuapp.com",
   server: true,
-  load_from_system_env: true,
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  load_from_system_env: true
 
 # Do not print debug messages in production
 config :logger, level: :info
