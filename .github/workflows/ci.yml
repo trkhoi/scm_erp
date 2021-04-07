@@ -29,15 +29,7 @@ jobs:
       - run: mix deps.get
       - run: mix deps.compile
       - run: cd assets && yarn install --frozen-lockfile
-      - run:
-        name: Init test
-        command: |
-          MIX_ENV=test mix test.init
-      - run:
-          name: DB migration
-          command: |
-            MIX_ENV=test mix ecto.migrate
-      - run:
-          name: Test
-          command: |
-            MIX_ENV=test mix test
+      - run: MIX_ENV=test mix test.init
+      - run: MIX_ENV=test mix ecto.migrate
+      - run: MIX_ENV=test mix test
+          
