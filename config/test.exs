@@ -8,7 +8,7 @@ use Mix.Config
 config :scm, Scm.Repo,
   username: "postgres",
   password: "postgres",
-  database: "scm_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "scm_local",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
