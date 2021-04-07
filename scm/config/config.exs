@@ -18,6 +18,18 @@ config :scm, ScmWeb.Endpoint,
   pubsub_server: Scm.PubSub,
   live_view: [signing_salt: "j3vmaYSE"]
 
+config :scm, Scm.Repo,
+  username: "postgres",
+  password: "postgres",
+  database: "scm_local",
+  pool: Ecto.Adapters.SQL.Sandbox
+
+if System.get_env("GITHUB_ACTIONS") do
+  config :scm, Scm.Repo,
+    username: "postgres",
+    password: "postgres"
+end
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
