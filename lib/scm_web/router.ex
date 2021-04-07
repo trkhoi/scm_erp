@@ -17,6 +17,8 @@ defmodule ScmWeb.Router do
   scope "/api/v1", ScmWeb do
     pipe_through(:api)
 
+    # Test ci/cd
+
     get("/product/:product_id/sop_componnent/", SopComponentController, :index)
     get("/product/:product_id/sop_componnent/:id", SopComponentController, :show)
     post("/product/:product_id/sop_componnent/", SopComponentController, :create)
