@@ -7,7 +7,7 @@ ENV APP_NAME=scm
 ENV MIX_ENV=prod
 
 ENV DATABASE_URL=postgres://qbuwsigmgffprs:9b95b6d254746854f60c6e6aae101cc48ec8df9dcac80300ef532666df4ec39b@ec2-52-22-161-59.compute-1.amazonaws.com:5432/dfbc8tslcs6caf
-ARG SECRET_KEY_BASE=secret
+ARG SECRET_KEY_BASE=tkPI1jVe9bXW0Uly6REfZTxRGkK+ZYLXvYTKRDXDm8e/15vfo4nKH4mgzInyMnmf
 WORKDIR /build
 
 RUN apk --no-cache update && \
