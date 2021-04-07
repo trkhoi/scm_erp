@@ -6,11 +6,13 @@ FROM elixir:1.9-alpine AS builder
 ENV APP_NAME=scm
 ENV MIX_ENV=prod
 
+ARG DATABASE_URL=postgres://postgres:postgres@localhost/scm_local
+ARG SECRET_KEY_BASE=secret
 WORKDIR /build
 
 RUN apk --no-cache update && \
     apk --no-cache upgrade && \
-    apk --no-cache add make g++ git openssl-dev python yaml-dev
+    apk --no-cache add make g++ git openssl-dev python3 yaml-dev
 
 RUN mix local.rebar --force && \
     mix local.hex --force
