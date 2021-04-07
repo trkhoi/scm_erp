@@ -10,10 +10,18 @@ database_url =
     environment variable DATABASE_URL is missing.
     For example: ecto://USER:PASS@HOST/DATABASE
     """
+  |> IO.inspect()
+  
 
 config :scm, Scm.Repo,
   # ssl: true,
   url: database_url,
+  username: "qbuwsigmgffprs",
+  password: "9b95b6d254746854f60c6e6aae101cc48ec8df9dcac80300ef532666df4ec39b",
+  database: "dfbc8tslcs6caf",
+  hostname: "ec2-52-22-161-59.compute-1.amazonaws.com",
+  ssl: true,
+  show_sensitive_data_on_connection_error: true,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 secret_key_base =
