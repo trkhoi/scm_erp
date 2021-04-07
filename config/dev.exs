@@ -17,6 +17,7 @@ config :scm, Scm.Repo,
 # with webpack to recompile .js and .css sources.
 config :scm, ScmWeb.Endpoint,
   http: [port: 4000],
+  host: "localhost",
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
