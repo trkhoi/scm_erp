@@ -1,6 +1,6 @@
 .PHONY: init source
 init: stop ## Run a mysql server inside of a Docker Compose environment
-	docker-compose up -d scm_local
+	docker-compose up -d scm_local scm_test
 	@echo "Waiting for database connection..."
 	@while ! docker exec $(DB_CONTAINER)  -h localhost -p 5432 > /dev/null; do \
     	sleep 1; \

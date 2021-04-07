@@ -9,3 +9,12 @@ services:
     container_name: scm_local
     ports:
       - 5432:5432
+  scm_test:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres_test
+      POSTGRES_DB: scm_test
+    container_name: scm_test
+    ports:
+      - 5433:5432
