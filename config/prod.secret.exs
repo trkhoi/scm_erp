@@ -20,13 +20,13 @@ config :scm, Scm.Repo,
   password: "9b95b6d254746854f60c6e6aae101cc48ec8df9dcac80300ef532666df4ec39b",
   database: "dfbc8tslcs6caf",
   hostname: "ec2-52-22-161-59.compute-1.amazonaws.com",
+  ssl: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   # in microseconds, defaults to 50
   queue_target: 3000,
   # in microseconds, defaults to 1000
-  queue_interval: 6000,
-  ssl: true
+  queue_interval: 6000
 
 secret_key_base =
   System.get_env("SECRET_KEY_BASE") ||
@@ -40,7 +40,8 @@ config :scm, ScmWeb.Endpoint,
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
-  force_ssl: [rewrite_on: [:x_forwarded_proto], hsts: true, host: nil],
+  url: [scheme: "https", host: "scmbe.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
   secret_key_base: secret_key_base
 
 # ## Using releases (Elixir v1.9+)
