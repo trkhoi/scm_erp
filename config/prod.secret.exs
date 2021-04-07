@@ -21,7 +21,7 @@ config :scm, Scm.Repo,
   database: "dfbc8tslcs6caf",
   hostname: "ec2-52-22-161-59.compute-1.amazonaws.com",
   show_sensitive_data_on_connection_error: true,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   # in microseconds, defaults to 50
   queue_target: 3000,
   # in microseconds, defaults to 1000
