@@ -12,14 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     container: node:10.18-jessie
     services:
-      - image: elixir:1.11.1
-        environment:
-          MIX_ENV: test
-      - image: postgres:11.1-alpine # database image
-        environment: # environment variables for database
-          POSTGRES_USER: postgres_test
-          POSTGRES_DB: scm_test
-          POSTGRES_PASSWORD: postgres
+        postgres:
+            image: postgres
+            env:
+              POSTGRES_USER: postgres_test
+              POSTGRES_PASSWORD: postgres
+              POSTGRES_DB: scm_test
+            ports:
+              - 5433:5432
+            options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-elixir@v1
@@ -29,7 +30,11 @@ jobs:
       - run: mix deps.get
       - run: mix deps.compile
       - run: cd assets && yarn install --frozen-lockfile
-      - run: MIX_ENV=test mix test.init
-      - run: MIX_ENV=test mix ecto.migrate
-      - run: MIX_ENV=test mix test
-          
+      - name: Running tests
+          run: mix test
+          env:
+            POSTGRES_HOST: localhost
+            POSTGRES_USER: postgres_test
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: scm_test
+            POSTGRES_PORT: 5433
