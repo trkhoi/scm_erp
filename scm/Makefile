@@ -8,19 +8,19 @@ init: stop ## Run a mysql server inside of a Docker Compose environment
 
 .PHONY: run
 run:
-	mix phx.server
+	MIX_ENV=dev mix phx.server
 
 .PHONY: migrate
 migrate:
-	mix ecto.migrate
+	MIX_ENV=dev mix ecto.migrate
 
 .PHONY: seed
 seed: migrate
-	mix run priv/repo/seeds.exs
+	MIX_ENV=dev mix run priv/repo/seeds.exs
 
 .PHONY: reset
 reset:
-	mix ecto.reset
+	MIX_ENV=dev mix ecto.reset
 .PHONY: stop
 stop: ## Stop every service of in the Docker Compose environment
 	docker-compose down

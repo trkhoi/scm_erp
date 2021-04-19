@@ -3,6 +3,7 @@ defmodule ScmWeb.SalesController do
 
   alias Scm.Service.Sales, as: SalesService
   alias Scm.Schema.Sales
+  alias Scm.Service.StatisticalForecast
 
   action_fallback(ScmWeb.FallbackController)
 
@@ -19,5 +20,9 @@ defmodule ScmWeb.SalesController do
   def finance_statistic(conn, args) do
     fs = SalesService.finance_statistic(args)
     render(conn, "finance_statistic.json", %{fs: fs})
+  end
+
+  def multiplicative(conn, %{"sales_id" => sales_id}) do
+    StatisticalForecast.multiplicative_statistic_forecast(sales_id)
   end
 end

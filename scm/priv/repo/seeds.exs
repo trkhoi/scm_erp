@@ -25,10 +25,19 @@ alias Scm.Schema.{
   SalesForecast,
   FunctionalArea,
   FunctionalAreaFeature,
-  ProcedureFlow
+  ProcedureFlow,
+  NewHistoricalData,
+  ForecastParameter
 }
 
 # seed admin
+Repo.insert!(%ForecastParameter{
+  alpha: 0.5,
+  beta: 0.5,
+  gamma: 0.5,
+  seasonal_cycle: 4,
+  forecast_type: "multiplicative"
+})
 
 Repo.insert!(%Sales{
   type: "lunar_cake",
@@ -1068,4 +1077,436 @@ Repo.insert!(%FunctionalAreaFeature{
 Repo.insert!(%FunctionalAreaFeature{
   feature_name: "Nướng bánh",
   functional_area_id: 10
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 1,
+  year: 2020,
+  quantity: 3551,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 1,
+  year: 2020,
+  quantity: 3496,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 1,
+  year: 2020,
+  quantity: 3483,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 1,
+  year: 2020,
+  quantity: 3539,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 2,
+  year: 2020,
+  quantity: 2711,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 2,
+  year: 2020,
+  quantity: 2767,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 2,
+  year: 2020,
+  quantity: 2706,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 2,
+  year: 2020,
+  quantity: 2749,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 3,
+  year: 2020,
+  quantity: 2143,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 3,
+  year: 2020,
+  quantity: 2165,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 3,
+  year: 2020,
+  quantity: 2093,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 3,
+  year: 2020,
+  quantity: 2188,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 4,
+  year: 2020,
+  quantity: 2225,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 4,
+  year: 2020,
+  quantity: 2298,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 4,
+  year: 2020,
+  quantity: 2241,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 4,
+  year: 2020,
+  quantity: 2175,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 5,
+  year: 2020,
+  quantity: 2280,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 5,
+  year: 2020,
+  quantity: 2265,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 5,
+  year: 2020,
+  quantity: 2260,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 5,
+  year: 2020,
+  quantity: 2277,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 6,
+  year: 2020,
+  quantity: 2301,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 6,
+  year: 2020,
+  quantity: 2314,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 6,
+  year: 2020,
+  quantity: 2299,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 6,
+  year: 2020,
+  quantity: 2391,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 7,
+  year: 2020,
+  quantity: 2214,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 7,
+  year: 2020,
+  quantity: 2231,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 7,
+  year: 2020,
+  quantity: 2189,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 7,
+  year: 2020,
+  quantity: 2201,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 8,
+  year: 2020,
+  quantity: 2183,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 8,
+  year: 2020,
+  quantity: 2191,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 8,
+  year: 2020,
+  quantity: 2190,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 8,
+  year: 2020,
+  quantity: 2178,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 9,
+  year: 2020,
+  quantity: 2214,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 9,
+  year: 2020,
+  quantity: 2203,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 9,
+  year: 2020,
+  quantity: 2193,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 9,
+  year: 2020,
+  quantity: 2212,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 10,
+  year: 2020,
+  quantity: 1976,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 10,
+  year: 2020,
+  quantity: 1980,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 10,
+  year: 2020,
+  quantity: 1969,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 10,
+  year: 2020,
+  quantity: 1971,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 11,
+  year: 2020,
+  quantity: 1999,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 11,
+  year: 2020,
+  quantity: 1994,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 11,
+  year: 2020,
+  quantity: 1997,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 11,
+  year: 2020,
+  quantity: 1985,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2020,
+  quantity: 3880,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2020,
+  quantity: 3875,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2020,
+  quantity: 3801,
+  description: "sample description",
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2020,
+  quantity: 3779,
+  description: "sample description",
+  sales_id: 1
 })
