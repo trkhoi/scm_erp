@@ -3,12 +3,14 @@ defmodule Scm.Schema.SalesForecast do
   import Ecto.Changeset
 
   schema "sales_forecast" do
+    field(:week, :integer)
     field(:month, :integer)
     field(:year, :integer)
     field(:promotion, :integer)
     field(:growth, :float)
     field(:product_type, :string)
     field(:forecast_value, :float)
+    field(:forecast_type, :string)
 
     belongs_to(:sales, Scm.Schema.Sales)
     belongs_to(:forecast_parameter, Scm.Schema.ForecastParameter)
@@ -17,6 +19,7 @@ defmodule Scm.Schema.SalesForecast do
   end
 
   @attrs [
+    :week,
     :year,
     :month,
     :promotion,
@@ -24,7 +27,8 @@ defmodule Scm.Schema.SalesForecast do
     :product_type,
     :forecast_value,
     :sales_id,
-    :forecast_parameter_id
+    :forecast_parameter_id,
+    :forecast_type
   ]
 
   def changeset(sales_forecast, attrs) do

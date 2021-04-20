@@ -8,12 +8,16 @@ defmodule Scm.Schema.NewHistoricalData do
     field(:year, :integer)
     field(:quantity, :integer)
     field(:description, :string)
+    field(:baseline, :float)
+    field(:trend, :float)
+    field(:season, :float)
+    # field(:pred, :float)
 
     belongs_to(:sales, Scm.Schema.Sales)
     timestamps()
   end
 
-  @attrs [:week, :year, :month, :quantity, :description, :sales_id]
+  @attrs [:week, :year, :month, :quantity, :description, :sales_id, :baseline, :trend, :season]
 
   def changeset(historical_data, attrs) do
     historical_data

@@ -1081,6 +1081,54 @@ Repo.insert!(%FunctionalAreaFeature{
 
 Repo.insert!(%NewHistoricalData{
   week: 1,
+  month: 12,
+  year: 2019,
+  quantity: 3779,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2019,
+  quantity: 3779,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2019,
+  quantity: 3779,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2019,
+  quantity: 3779,
+  description: "sample description",
+  baseline: 3517.24,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
   month: 1,
   year: 2020,
   quantity: 3551,

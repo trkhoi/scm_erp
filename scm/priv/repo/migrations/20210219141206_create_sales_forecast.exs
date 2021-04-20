@@ -17,6 +17,7 @@ defmodule Scm.Repo.Migrations.CreateSalesForecast do
       add(:promotion, :integer)
       add(:month, :integer)
       add(:year, :integer)
+      add(:week, :integer)
 
       add(:forecast_type, :string)
 

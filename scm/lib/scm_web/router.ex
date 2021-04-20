@@ -64,7 +64,8 @@ defmodule ScmWeb.Router do
     end
 
     scope "/sales/:sales_id/statistical_forecast" do
-      get("/multiplicative", SalesController, :multiplicative)
+      post("/multiplicative", SalesForecastController, :multiplicative)
+      get("/multiplicative", SalesForecastController, :index)
     end
   end
 
