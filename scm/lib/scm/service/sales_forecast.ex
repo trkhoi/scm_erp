@@ -10,6 +10,20 @@ defmodule Scm.Service.SalesForecast do
     |> Repo.insert()
   end
 
+  def check_multiplicative_sf(sales_id) do
+    SalesForecast
+    |> select([sf], count(sf.id))
+    |> where([sf], sf.forecast_type == "multiplicative" and sf.sales_id == ^sales_id)
+    |> Repo.one()
+  end
+
+  def get_multiplicative_sf(sales_id) do
+    SalesForecast
+    |> select([sf], sf)
+    |> where([sf], sf.forecast_type == "multiplicative" and sf.sales_id == ^sales_id)
+    |> Repo.all()
+  end
+
   def check_sf_in() do
     SalesForecast
     |> select([sf], sf)
