@@ -25,14 +25,26 @@ defmodule ScmWeb.SalesForecastView do
   end
 
   def render("multiplicative.json", %{sales_forecast: sf}) do
-    IO.inspect(sf)
-
     %{
       data: render_many(sf, ScmWeb.SalesForecastView, "multiplicative_detail.json")
     }
   end
 
   def render("multiplicative_detail.json", %{sales_forecast: sf}) do
+    %{
+      month: sf.month,
+      week: sf.week,
+      forecast_value: sf.forecast_value
+    }
+  end
+
+  def render("additive.json", %{sales_forecast: sf}) do
+    %{
+      data: render_many(sf, ScmWeb.SalesForecastView, "additive_detail.json")
+    }
+  end
+
+  def render("additive_detail.json", %{sales_forecast: sf}) do
     %{
       month: sf.month,
       week: sf.week,

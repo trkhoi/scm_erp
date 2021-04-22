@@ -19,8 +19,18 @@ defmodule ScmWeb.SalesForecastController do
     json(conn, %{})
   end
 
+  def additive(conn, %{"sales_id" => sales_id}) do
+    StatisticalForecast.additive_statistic_forecast(sales_id)
+    json(conn, %{})
+  end
+
   def index(conn, %{"sales_id" => sales_id}) do
     sf = SalesForecastService.get_multiplicative_sf(sales_id)
     render(conn, "multiplicative.json", %{sales_forecast: sf})
+  end
+
+  def index_additive(conn, %{"sales_id" => sales_id}) do
+    sf = SalesForecastService.get_additive_sf(sales_id) |> Enum.sort(&(&1.month < &2.month))
+    render(conn, "additive.json", %{sales_forecast: sf})
   end
 end

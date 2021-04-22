@@ -17,10 +17,24 @@ defmodule Scm.Service.SalesForecast do
     |> Repo.one()
   end
 
+  def check_additive_sf(sales_id) do
+    SalesForecast
+    |> select([sf], count(sf.id))
+    |> where([sf], sf.forecast_type == "additive" and sf.sales_id == ^sales_id)
+    |> Repo.one()
+  end
+
   def get_multiplicative_sf(sales_id) do
     SalesForecast
     |> select([sf], sf)
     |> where([sf], sf.forecast_type == "multiplicative" and sf.sales_id == ^sales_id)
+    |> Repo.all()
+  end
+
+  def get_additive_sf(sales_id) do
+    SalesForecast
+    |> select([sf], sf)
+    |> where([sf], sf.forecast_type == "additive" and sf.sales_id == ^sales_id)
     |> Repo.all()
   end
 

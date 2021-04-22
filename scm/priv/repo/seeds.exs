@@ -27,7 +27,8 @@ alias Scm.Schema.{
   FunctionalAreaFeature,
   ProcedureFlow,
   NewHistoricalData,
-  ForecastParameter
+  ForecastParameter,
+  AdditiveHistoricalData
 }
 
 # seed admin
@@ -37,6 +38,14 @@ Repo.insert!(%ForecastParameter{
   gamma: 0.5,
   seasonal_cycle: 4,
   forecast_type: "multiplicative"
+})
+
+Repo.insert!(%ForecastParameter{
+  alpha: 0.5,
+  beta: 0.5,
+  gamma: 0.5,
+  seasonal_cycle: 4,
+  forecast_type: "additive"
 })
 
 Repo.insert!(%Sales{
@@ -1125,6 +1134,38 @@ Repo.insert!(%NewHistoricalData{
   trend: 0.0,
   season: 1.0061838083730188,
   sales_id: 1
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  forecast_type: "additive",
+  new_historical_data_id: 1
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  forecast_type: "additive",
+  new_historical_data_id: 2
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  forecast_type: "additive",
+  new_historical_data_id: 3
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 3517.24,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  forecast_type: "additive",
+  new_historical_data_id: 4
 })
 
 Repo.insert!(%NewHistoricalData{
