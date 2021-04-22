@@ -1,8 +1,9 @@
 defmodule Scm.Service.StatisticalForecast do
   import Ecto.Query, warn: false
   alias Scm.Repo
+  alias Ecto.Changeset
 
-  alias Scm.Schema.{NewHistoricalData, SalesForecast, ForecastParameter}
+  alias Scm.Schema.{NewHistoricalData, SalesForecast, ForecastParameter, AdditiveHistoricalData}
   alias Scm.Service.SalesForecast, as: SalesForecastService
 
   def create(attrs \\ %{}) do
@@ -25,9 +26,23 @@ defmodule Scm.Service.StatisticalForecast do
     |> Repo.one()
   end
 
+  def get_additive_nhd_by_id(id) do
+    AdditiveHistoricalData
+    |> select([ahd], ahd)
+    |> where([ahd], ahd.id == ^id)
+    |> preload(:new_historical_data)
+    |> Repo.one()
+  end
+
   def update_nhd(%NewHistoricalData{} = nhd, attrs) do
     nhd
     |> NewHistoricalData.changeset(attrs)
+    |> Repo.update()
+  end
+
+  def update_ahd(%AdditiveHistoricalData{} = nhd, attrs) do
+    nhd
+    |> AdditiveHistoricalData.changeset(attrs)
     |> Repo.update()
   end
 
@@ -35,6 +50,14 @@ defmodule Scm.Service.StatisticalForecast do
     ForecastParameter
     |> select([fp], fp)
     |> where([fp], fp.forecast_type == "multiplicative")
+    |> Repo.one()
+  end
+
+  def get_additive_forecast_parameter() do
+    ForecastParameter
+    |> select([fp], fp)
+    |> where([fp], fp.forecast_type == "additive")
+    |> preload(:new_historical_data)
     |> Repo.one()
   end
 
@@ -74,7 +97,7 @@ defmodule Scm.Service.StatisticalForecast do
 
           update_nhd(y, attrs)
           pred = (uv.baseline + uv.trend) * s.season
-          # acc ++ [pred]
+
           attrs_forecast =
             %{
               forecast_type: "multiplicative",
@@ -87,101 +110,70 @@ defmodule Scm.Service.StatisticalForecast do
             |> SalesForecastService.create_sf()
         end)
     end
+  end
 
-    # sample_data =
-    #   0..3
-    #   |> Enum.map(fn itm ->
-    #     tmp = Enum.at(data, itm)
+  def additive_statistic_forecast(sales_id) do
+    data = get_new_historical_data(sales_id)
 
-    #     %{
-    #       week: tmp.week,
-    #       month: tmp.month,
-    #       year: tmp.year,
-    #       quantity: tmp.quantity
-    #     }
-    #   end)
+    first_id = List.first(data).id
+    last_id = List.last(data).id
 
-    # sum_sample_data =
-    #   sample_data
-    #   |> Enum.reduce([], fn sd, acc ->
-    #     acc ++ [sd.quantity]
-    #   end)
-    #   |> Enum.sum()
+    para = get_forecast_parameter()
+    alpha = para.alpha
+    beta = para.beta
+    gamma = para.gamma
+    c = para.seasonal_cycle
 
-    # average_sample_data = sum_sample_data / 4
+    SalesForecastService.check_additive_sf(sales_id)
+    |> case do
+      n when n > 0 ->
+        nil
 
-    # # the first 4 S of historical data
-    # seasonal_value =
-    #   sample_data
-    #   |> Enum.map(fn itm ->
-    #     %{
-    #       week: itm.week,
-    #       month: itm.month,
-    #       year: itm.year,
-    #       quantity: itm.quantity / average_sample_data
-    #     }
-    #   end)
+      0 ->
+        first_id..last_id
+        |> Enum.reduce([], fn itm, acc ->
+          additive =
+            Changeset.change(%AdditiveHistoricalData{}, %{
+              forecast_type: "additive",
+              new_historical_data_id: itm
+            })
+            |> Repo.insert()
 
-    # # the first 4 U historical data
-    # first_3_baseline_value =
-    #   0..2
-    #   |> Enum.map(fn itm ->
-    #     tmp = Enum.at(data, itm)
+          uv = get_additive_nhd_by_id(itm - 1) |> IO.inspect()
+          s = get_additive_nhd_by_id(itm - c) |> IO.inspect()
+          y = get_additive_nhd_by_id(itm) |> IO.inspect()
 
-    #     %{
-    #       week: tmp.week,
-    #       month: tmp.month,
-    #       year: tmp.year,
-    #       quantity: 0
-    #     }
-    #   end)
+          u_now =
+            alpha * (y.new_historical_data.quantity - s.season) +
+              (1 - alpha) * (uv.baseline + uv.trend)
 
-    # forth_baseline_value = Enum.at(data, 3).quantity / List.last(seasonal_value).quantity
+          v_now = beta * (u_now - uv.baseline) + (1 - beta) * uv.trend
 
-    # baseline_value =
-    #   first_3_baseline_value ++
-    #     [
-    #       %{
-    #         week: Enum.at(data, 3).week,
-    #         month: Enum.at(data, 3).month,
-    #         year: Enum.at(data, 3).year,
-    #         quantity: forth_baseline_value
-    #       }
-    #     ]
+          s_now =
+            gamma * (y.new_historical_data.quantity - uv.baseline) +
+              (1 - gamma) * s.season
 
-    # # the first 4 V historical data
-    # trend_value =
-    #   0..3
-    #   |> Enum.map(fn itm ->
-    #     tmp = Enum.at(data, itm)
+          attrs = %{
+            baseline: u_now,
+            trend: v_now,
+            season: s_now
+          }
 
-    #     %{
-    #       week: tmp.week,
-    #       month: tmp.month,
-    #       year: tmp.year,
-    #       quantity: 0
-    #     }
-    #   end)
+          {:ok, y_} = update_ahd(y, attrs)
 
-    # baseline_init_list =
-    #   baseline_value
-    #   |> Enum.reduce([], fn itm, acc ->
-    #     acc ++ [itm.quantity]
-    #   end)
-    #   |> IO.inspect()
+          pred = uv.baseline + uv.trend + y_.season
 
-    # trend_init_list =
-    #   trend_value
-    #   |> Enum.reduce([], fn itm, acc ->
-    #     acc ++ [itm.quantity]
-    #   end)
-    #   |> IO.inspect()
-
-    # season_init_list =
-    #   seasonal_value
-    #   |> Enum.reduce([], fn itm, acc ->
-    #     acc ++ [itm.quantity]
-    #   end)
-    #   |> IO.inspect()
+          attrs_forecast =
+            %{
+              forecast_type: "additive",
+              year: y.new_historical_data.year,
+              month: y.new_historical_data.month,
+              week: y.new_historical_data.week,
+              forecast_value: pred,
+              sales_id: sales_id
+            }
+            |> SalesForecastService.create_sf()
+        end)
+    end
   end
 end
