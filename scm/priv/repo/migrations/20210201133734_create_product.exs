@@ -17,6 +17,7 @@ defmodule Scm.Repo.Migrations.CreateProduct do
       add(:price, :float)
       add(:note, :string)
       add(:sales_id, references(:sales))
+      add(:feature, :string)
 
       timestamps()
     end

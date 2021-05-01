@@ -28,8 +28,24 @@ alias Scm.Schema.{
   ProcedureFlow,
   NewHistoricalData,
   ForecastParameter,
-  AdditiveHistoricalData
+  AdditiveHistoricalData,
+  AnalyzeSocialNetwork,
+  AffectingFactor
 }
+
+Repo.insert!(%AnalyzeSocialNetwork{
+  name: "Covid-19 pandemic",
+  type: "covid",
+  most_use_product: ["toilet_paper", "medicine", "water", "food"]
+})
+
+Repo.insert!(%AffectingFactor{
+  type: "covid",
+  name: "Covid-19 pandemic",
+  level: "high",
+  analyze_social_network_id: 1,
+  forecasting_type: ["multiplicative", "additive"]
+})
 
 # seed admin
 Repo.insert!(%ForecastParameter{
@@ -81,7 +97,8 @@ Repo.insert!(%Product{
   code: "lunar_cake",
   note: "sample description",
   price: 40_000.0,
-  sales_id: 1
+  sales_id: 1,
+  feature: "forecasting"
 })
 
 Repo.insert!(%Product{

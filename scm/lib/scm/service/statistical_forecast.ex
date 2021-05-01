@@ -53,6 +53,13 @@ defmodule Scm.Service.StatisticalForecast do
     |> Repo.one()
   end
 
+  def get_forecast_parameter_with_type(forecast_type) do
+    ForecastParameter
+    |> select([fp], fp)
+    |> where([fp], fp.forecast_type == ^forecast_type)
+    |> Repo.one()
+  end
+
   def get_additive_forecast_parameter() do
     ForecastParameter
     |> select([fp], fp)
@@ -76,7 +83,40 @@ defmodule Scm.Service.StatisticalForecast do
     SalesForecastService.check_multiplicative_sf(sales_id)
     |> case do
       n when n > 0 ->
-        nil
+        all_old_sales = SalesForecastService.get_all_old_sf(sales_id, "multiplicative")
+
+        Repo.delete_all(all_old_sales)
+
+        first_id..last_id
+        |> Enum.reduce([], fn itm, acc ->
+          uv = get_nhd_by_id(itm - 1)
+          s = get_nhd_by_id(itm - c)
+          y = get_nhd_by_id(itm)
+
+          u_now = alpha * (y.quantity / s.season) + (1 - alpha) * (uv.baseline + uv.trend)
+          v_now = beta * (u_now - uv.baseline) + (1 - beta) * uv.trend
+          s_now = gamma * (y.quantity / u_now) + (1 - gamma) * s.season
+
+          attrs = %{
+            baseline: u_now,
+            trend: v_now,
+            season: s_now
+          }
+
+          update_nhd(y, attrs)
+          pred = (uv.baseline + uv.trend) * s.season
+
+          attrs_forecast =
+            %{
+              forecast_type: "multiplicative",
+              year: y.year,
+              month: y.month,
+              week: y.week,
+              forecast_value: pred,
+              sales_id: sales_id
+            }
+            |> SalesForecastService.create_sf()
+        end)
 
       0 ->
         first_id..last_id
@@ -139,9 +179,9 @@ defmodule Scm.Service.StatisticalForecast do
             })
             |> Repo.insert()
 
-          uv = get_additive_nhd_by_id(itm - 1) |> IO.inspect()
-          s = get_additive_nhd_by_id(itm - c) |> IO.inspect()
-          y = get_additive_nhd_by_id(itm) |> IO.inspect()
+          uv = get_additive_nhd_by_id(itm - 1)
+          s = get_additive_nhd_by_id(itm - c)
+          y = get_additive_nhd_by_id(itm)
 
           u_now =
             alpha * (y.new_historical_data.quantity - s.season) +
