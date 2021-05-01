@@ -38,7 +38,7 @@ defmodule Scm.Service.Sales do
     product =
       Product
       |> select([p], p)
-      |> where([p], p.code == ^args["type"])
+      |> where([p], p.code == ^args["type"] and p.feature == "forecasting")
       |> Repo.one()
 
     market =
@@ -69,7 +69,12 @@ defmodule Scm.Service.Sales do
   end
 
   def finance_statistic(args) do
-    product = Repo.get_by(Product, code: args["product"])
+    product =
+      Product
+      |> select([p], p)
+      |> where([p], p.code == ^args["product"] and p.feature == "forecasting")
+      |> Repo.one()
+
     price = Map.get(product, :price, 0)
 
     HistoricalData

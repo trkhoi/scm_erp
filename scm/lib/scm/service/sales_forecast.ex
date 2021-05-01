@@ -17,6 +17,14 @@ defmodule Scm.Service.SalesForecast do
     |> Repo.one()
   end
 
+  def get_all_old_sf(sales_id, forecast_type) do
+    SalesForecast
+    |> select([sf], sf)
+    |> where([sf], sf.forecast_type == ^forecast_type and sf.sales_id == ^sales_id)
+
+    # |> Repo.all()
+  end
+
   def check_additive_sf(sales_id) do
     SalesForecast
     |> select([sf], count(sf.id))

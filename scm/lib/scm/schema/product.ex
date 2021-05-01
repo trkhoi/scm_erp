@@ -7,6 +7,7 @@ defmodule Scm.Schema.Product do
     field(:code, :string)
     field(:note, :string)
     field(:price, :float)
+    field(:feature, :string)
 
     belongs_to(:sales, Scm.Schema.Sales)
     has_many(:sop_component, Scm.Schema.SopComponent)
