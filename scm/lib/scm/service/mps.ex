@@ -97,6 +97,7 @@ defmodule Scm.Service.Mps do
           acc ++
             [
               %{
+                sales_id: String.to_integer(args["sales_id"]),
                 week: mps.week,
                 weekly_demand: mps.mps,
                 month: mps.month,
@@ -115,6 +116,7 @@ defmodule Scm.Service.Mps do
               5 ->
                 create_mps(%{
                   week: week,
+                  sales_id: String.to_integer(args["sales_id"]),
                   mps: mps_daily_with_month.daily_mps,
                   month: mps_daily_with_month.month,
                   type: "weekly",
@@ -127,6 +129,7 @@ defmodule Scm.Service.Mps do
                   [
                     %{
                       week: week,
+                      sales_id: String.to_integer(args["sales_id"]),
                       weekly_demand: mps_daily_with_month.daily_mps,
                       month: mps_daily_with_month.month,
                       working_days_in_week: 1,
@@ -138,6 +141,7 @@ defmodule Scm.Service.Mps do
               _ ->
                 create_mps(%{
                   week: week,
+                  sales_id: String.to_integer(args["sales_id"]),
                   mps: mps_daily_with_month.daily_mps * 5,
                   month: mps_daily_with_month.month,
                   type: "weekly",
@@ -150,6 +154,7 @@ defmodule Scm.Service.Mps do
                   [
                     %{
                       week: week,
+                      sales_id: String.to_integer(args["sales_id"]),
                       weekly_demand: mps_daily_with_month.daily_mps * 5,
                       month: mps_daily_with_month.month,
                       working_days_in_week: 1,
