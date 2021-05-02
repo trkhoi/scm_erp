@@ -46,6 +46,11 @@ defmodule ScmWeb.Router do
       post("/:sales_id/sop", SopController, :sop)
       put("/:sales_id/sop/", SopController, :update_sop)
 
+      post("/:sales_id/bom", BomController, :create)
+      get("/:sales_id/bom", BomController, :index)
+      post("/:sales_id/mrp", BomController, :create_mrp)
+      get("/:sales_id/mrp", BomController, :index_mrp)
+
       # scope "/:sales_id/sop/" do
       #   get("/:sop_id/sop_componnent/", SopComponentController, :index)
       #   get("/:sop_id/sop_componnent/:id", SopComponentController, :show)

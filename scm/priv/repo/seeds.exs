@@ -30,7 +30,8 @@ alias Scm.Schema.{
   ForecastParameter,
   AdditiveHistoricalData,
   AnalyzeSocialNetwork,
-  AffectingFactor
+  AffectingFactor,
+  ProductIngredient
 }
 
 Repo.insert!(%AnalyzeSocialNetwork{
@@ -1615,4 +1616,53 @@ Repo.insert!(%NewHistoricalData{
   quantity: 3779,
   description: "sample description",
   sales_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "flour",
+  type: "flour",
+  quantity: 300.0,
+  product_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Iye water",
+  type: "iye_water",
+  quantity: 50.0,
+  product_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Sugar scones",
+  type: "sugar_scones",
+  quantity: 5.0,
+  product_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Lotus seeds",
+  type: "lotus_seeds",
+  quantity: 2.0,
+  product_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Sweet potato",
+  type: "sweet_potato",
+  quantity: 1.0,
+  product_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Meat",
+  type: "meat",
+  quantity: 10.0,
+  product_id: 1
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Salt eggs",
+  type: "salt_eggs",
+  quantity: 50.0,
+  product_id: 1
 })
