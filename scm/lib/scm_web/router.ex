@@ -17,6 +17,12 @@ defmodule ScmWeb.Router do
   scope "/api/v1", ScmWeb do
     pipe_through(:api)
 
+    scope "/supplier" do
+      post("/aggregate", FuzzyController, :gen_aggregate_fuzzy)
+      post("/fpis_fnis", FuzzyController, :gen_fnis_fpis)
+      get("/ranking", FuzzyController, :ranking_criteria)
+    end
+
     get("/product/:product_id/sop_componnent/", SopComponentController, :index)
     get("/product/:product_id/sop_componnent/:id", SopComponentController, :show)
     post("/product/:product_id/sop_componnent/", SopComponentController, :create)
