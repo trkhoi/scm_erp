@@ -31,7 +31,12 @@ alias Scm.Schema.{
   AdditiveHistoricalData,
   AnalyzeSocialNetwork,
   AffectingFactor,
-  ProductIngredient
+  ProductIngredient,
+  Weight,
+  Supplier,
+  Criteria,
+  DmSupplier,
+  Dm
 }
 
 Repo.insert!(%AnalyzeSocialNetwork{
@@ -1665,4 +1670,322 @@ Repo.insert!(%ProductIngredient{
   type: "salt_eggs",
   quantity: 50.0,
   product_id: 1
+})
+
+Repo.insert!(%Criteria{
+  name: "Cost",
+  code: "C1"
+})
+
+Repo.insert!(%Criteria{
+  name: "Delivery capabilities",
+  code: "C2"
+})
+
+Repo.insert!(%Criteria{
+  name: "Quality of product",
+  code: "C3"
+})
+
+Repo.insert!(%Criteria{
+  name: "Performance",
+  code: "C4"
+})
+
+Repo.insert!(%Supplier{
+  name: "Công ty cung cấp nguyên liệu An Phú",
+  info: "A1"
+})
+
+Repo.insert!(%Supplier{
+  name: "Cửa hàng cung cấp nguyên liệu bánh Abby",
+  info: "A2"
+})
+
+Repo.insert!(%Supplier{
+  name: "Cửa hàng cung cấp nguyên liệu bánh Baker's Mart Nhất Hương",
+  info: "A3"
+})
+
+Repo.insert!(%Supplier{
+  name: "Cửa hàng cung cấp nguyên liệu bánh ĐVP Market",
+  info: "A4"
+})
+
+Repo.insert!(%Dm{
+  name: "Decision Marker 1",
+  info: "DM1"
+})
+
+Repo.insert!(%Dm{
+  name: "Decision Marker 2",
+  info: "DM2"
+})
+
+Repo.insert!(%Weight{
+  type: "criteria",
+  rating: "Very Low",
+  rating_code: "VL"
+})
+
+Repo.insert!(%Weight{
+  type: "criteria",
+  rating: "Low",
+  rating_code: "L"
+})
+
+Repo.insert!(%Weight{
+  type: "criteria",
+  rating: "Medium",
+  rating_code: "M"
+})
+
+Repo.insert!(%Weight{
+  type: "criteria",
+  rating: "High",
+  rating_code: "H"
+})
+
+Repo.insert!(%Weight{
+  type: "criteria",
+  rating: "Very High",
+  rating_code: "VH"
+})
+
+Repo.insert!(%Weight{
+  type: "supplier",
+  rating: "Very Poor",
+  rating_code: "VP"
+})
+
+Repo.insert!(%Weight{
+  type: "supplier",
+  rating: "Poor",
+  rating_code: "P"
+})
+
+Repo.insert!(%Weight{
+  type: "supplier",
+  rating: "Fair",
+  rating_code: "F"
+})
+
+Repo.insert!(%Weight{
+  type: "supplier",
+  rating: "Good",
+  rating_code: "G"
+})
+
+Repo.insert!(%Weight{
+  type: "supplier",
+  rating: "Very Good",
+  rating_code: "VG"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 1,
+  dm_id: 1,
+  value: [3.0, 5.0, 7.0],
+  type: "supplier",
+  rating_code: "F"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 2,
+  dm_id: 1,
+  value: [7.0, 9.0, 9.0],
+  type: "supplier",
+  rating_code: "VG"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 3,
+  dm_id: 1,
+  value: [1.0, 3.0, 5.0],
+  type: "supplier",
+  rating_code: "P"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 4,
+  dm_id: 1,
+  value: [3.0, 5.0, 7.0],
+  type: "supplier",
+  rating_code: "F"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 1,
+  dm_id: 2,
+  value: [3.0, 5.0, 7.0],
+  type: "supplier",
+  rating_code: "F"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 2,
+  dm_id: 2,
+  value: [7.0, 9.0, 9.0],
+  type: "supplier",
+  rating_code: "VG"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 3,
+  dm_id: 2,
+  value: [3.0, 5.0, 7.0],
+  type: "supplier",
+  rating_code: "F"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 1,
+  criteria_id: 4,
+  dm_id: 2,
+  value: [3.0, 5.0, 7.0],
+  type: "supplier",
+  rating_code: "F"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 1,
+  dm_id: 1,
+  value: [5.0, 7.0, 9.0],
+  type: "supplier",
+  rating_code: "G"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 2,
+  dm_id: 1,
+  value: [5.0, 7.0, 9.0],
+  type: "supplier",
+  rating_code: "G"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 3,
+  dm_id: 1,
+  value: [1.0, 3.0, 5.0],
+  type: "supplier",
+  rating_code: "P"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 4,
+  dm_id: 1,
+  value: [1.0, 3.0, 5.0],
+  type: "supplier",
+  rating_code: "P"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 1,
+  dm_id: 2,
+  value: [5.0, 7.0, 9.0],
+  type: "supplier",
+  rating_code: "G"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 2,
+  dm_id: 2,
+  value: [7.0, 9.0, 9.0],
+  type: "supplier",
+  rating_code: "VG"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 3,
+  dm_id: 2,
+  value: [1.0, 3.0, 5.0],
+  type: "supplier",
+  rating_code: "P"
+})
+
+Repo.insert!(%DmSupplier{
+  supplier_id: 2,
+  criteria_id: 4,
+  dm_id: 2,
+  value: [1.0, 3.0, 5.0],
+  type: "supplier",
+  rating_code: "P"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 1,
+  dm_id: 1,
+  value: [5.0, 7.0, 9.0],
+  type: "criteria",
+  rating_code: "H"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 2,
+  dm_id: 1,
+  value: [7.0, 9.0, 9.0],
+  type: "criteria",
+  rating_code: "VH"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 3,
+  dm_id: 1,
+  value: [7.0, 9.0, 9.0],
+  type: "criteria",
+  rating_code: "VH"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 4,
+  dm_id: 1,
+  value: [3.0, 5.0, 7.0],
+  type: "criteria",
+  rating_code: "M"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 1,
+  dm_id: 2,
+  value: [3.0, 5.0, 7.0],
+  type: "criteria",
+  rating_code: "M"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 2,
+  dm_id: 2,
+  value: [5.0, 7.0, 9.0],
+  type: "criteria",
+  rating_code: "H"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 3,
+  dm_id: 2,
+  value: [5.0, 7.0, 9.0],
+  type: "criteria",
+  rating_code: "H"
+})
+
+Repo.insert!(%DmSupplier{
+  criteria_id: 4,
+  dm_id: 2,
+  value: [1.0, 3.0, 5.0],
+  type: "criteria",
+  rating_code: "L"
 })
