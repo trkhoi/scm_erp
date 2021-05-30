@@ -21,6 +21,11 @@ defmodule ScmWeb.Router do
       post("/aggregate", FuzzyController, :gen_aggregate_fuzzy)
       post("/fpis_fnis", FuzzyController, :gen_fnis_fpis)
       get("/ranking", FuzzyController, :ranking_criteria)
+
+      # handle supplier collapse
+      get("/status", SupplierController, :supplier_status)
+      get("/solution", SupplierController, :solution)
+      get("/handle_issue", SupplierController, :handle_issue)
     end
 
     get("/product/:product_id/sop_componnent/", SopComponentController, :index)

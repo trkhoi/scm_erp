@@ -36,8 +36,93 @@ alias Scm.Schema.{
   Supplier,
   Criteria,
   DmSupplier,
-  Dm
+  Dm,
+  Status,
+  Solution,
+  Inventory,
+  SupplierStatus,
+  NewBom
 }
+
+Repo.insert!(%Inventory{
+  type: "Sugar",
+  maximum_quantity: 10000.0,
+  quantity: 120.0
+})
+
+Repo.insert!(%Inventory{
+  type: "Flour",
+  maximum_quantity: 10000.0,
+  quantity: 90.0
+})
+
+Repo.insert!(%Inventory{
+  type: "Bean",
+  maximum_quantity: 10000.0,
+  quantity: 115.0
+})
+
+Repo.insert!(%Inventory{
+  type: "Egg",
+  maximum_quantity: 10000.0,
+  quantity: 88.0
+})
+
+Repo.insert!(%Inventory{
+  type: "Young rice",
+  maximum_quantity: 10000.0,
+  quantity: 120.0
+})
+
+Repo.insert!(%Solution{
+  solution: "Move to second supplier",
+  type: "change_supplier"
+})
+
+Repo.insert!(%Solution{
+  solution: "Use substitute component",
+  type: "substitute"
+})
+
+Repo.insert!(%Solution{
+  solution: "Order extra inventory",
+  type: "extra_inventory"
+})
+
+Repo.insert!(%Solution{
+  solution: "Order 20% material from second supplier and wait for main supplier",
+  type: "temporary"
+})
+
+Repo.insert!(%Status{
+  info: "sample status",
+  status: "ok",
+  status_name: "OK"
+})
+
+Repo.insert!(%Status{
+  info: "sample status",
+  status: "dead",
+  status_name: "Supplier Collapse"
+})
+
+Repo.insert!(%Status{
+  info: "sample status",
+  status: "pre_dead",
+  status_name: "Supplier Struggle"
+})
+
+Repo.insert!(%Status{
+  info: "sample status",
+  status: "maintain",
+  status_name: "Supplier Maintain"
+})
+
+Repo.insert!(%Status{
+  info: "sample status",
+  status: "lack_of_time",
+  status_name: "Supplier Delay Delivery"
+})
 
 Repo.insert!(%AnalyzeSocialNetwork{
   name: "Covid-19 pandemic",
@@ -1693,23 +1778,33 @@ Repo.insert!(%Criteria{
 })
 
 Repo.insert!(%Supplier{
-  name: "Công ty cung cấp nguyên liệu An Phú",
+  name: "Tấn Phát",
   info: "A1"
 })
 
 Repo.insert!(%Supplier{
-  name: "Cửa hàng cung cấp nguyên liệu bánh Abby",
+  name: "Minh Thuỳ",
   info: "A2"
 })
 
 Repo.insert!(%Supplier{
-  name: "Cửa hàng cung cấp nguyên liệu bánh Baker's Mart Nhất Hương",
+  name: "Hải Nam",
   info: "A3"
 })
 
 Repo.insert!(%Supplier{
-  name: "Cửa hàng cung cấp nguyên liệu bánh ĐVP Market",
+  name: "Vĩnh Khang",
   info: "A4"
+})
+
+Repo.insert!(%Supplier{
+  name: "Phương Hoài",
+  info: "A5"
+})
+
+Repo.insert!(%Supplier{
+  name: "Hoài Đức",
+  info: "A6"
 })
 
 Repo.insert!(%Dm{
@@ -1988,4 +2083,154 @@ Repo.insert!(%DmSupplier{
   value: [1.0, 3.0, 5.0],
   type: "criteria",
   rating_code: "L"
+})
+
+Repo.insert!(%SupplierStatus{
+  supplier_id: 1,
+  status_id: 1
+})
+
+Repo.insert!(%SupplierStatus{
+  supplier_id: 2,
+  status_id: 1
+})
+
+Repo.insert!(%SupplierStatus{
+  supplier_id: 3,
+  status_id: 2
+})
+
+Repo.insert!(%SupplierStatus{
+  supplier_id: 4,
+  status_id: 4
+})
+
+Repo.insert!(%SupplierStatus{
+  supplier_id: 5,
+  status_id: 3
+})
+
+Repo.insert!(%SupplierStatus{
+  supplier_id: 6,
+  status_id: 5
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh trung thu",
+  material: "Sugar",
+  quantity: 150.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh trung thu",
+  material: "Flour",
+  quantity: 150.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh trung thu",
+  material: "Bean",
+  quantity: 210.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh trung thu",
+  material: "Young rice",
+  quantity: 210.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh trung thu",
+  material: "Egg",
+  quantity: 50.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh gạo",
+  material: "Sugar",
+  quantity: 100.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh gạo",
+  material: "Flour",
+  quantity: 150.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh gạo",
+  material: "Young rice",
+  quantity: 250.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quy",
+  material: "Sugar",
+  quantity: 100.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quy",
+  material: "Flour",
+  quantity: 150.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quy",
+  material: "Bean",
+  quantity: 180.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quy",
+  material: "Egg",
+  quantity: 30.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh socola",
+  material: "Sugar",
+  quantity: 80.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh socola",
+  material: "Flour",
+  quantity: 180.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh socola",
+  material: "Bean",
+  quantity: 220.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh socola",
+  material: "Young rice",
+  quantity: 200.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quế",
+  material: "Sugar",
+  quantity: 100.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quế",
+  material: "Flour",
+  quantity: 120.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quế",
+  material: "Bean",
+  quantity: 190.0
+})
+
+Repo.insert!(%NewBom{
+  product: "Bánh quế",
+  material: "Young rice",
+  quantity: 200.0
 })
