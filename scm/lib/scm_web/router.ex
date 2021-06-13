@@ -28,6 +28,12 @@ defmodule ScmWeb.Router do
       get("/handle_issue", SupplierController, :handle_issue)
     end
 
+    scope "/replan" do
+      get("/risk", ReplanController, :risk)
+      get("/solutions", ReplanController, :solutions)
+      post("/handle", ReplanController, :gen_risk_solution)
+    end
+
     get("/product/:product_id/sop_componnent/", SopComponentController, :index)
     get("/product/:product_id/sop_componnent/:id", SopComponentController, :show)
     post("/product/:product_id/sop_componnent/", SopComponentController, :create)

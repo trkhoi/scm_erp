@@ -135,4 +135,55 @@ defmodule Scm.Service.Sop do
   defp working_days() do
     Enum.random(15..22)
   end
+
+  defp sf_by_month_enhance(id, forecast_type, month) do
+    SalesForecast
+    |> select([sf], sf)
+    |> join(:inner, [sf], s in Sales, on: s.id == sf.sales_id)
+    |> where([sf, s], s.id == ^id and sf.forecast_type == ^forecast_type and sf.month == ^month)
+    |> Repo.all()
+  end
+
+  def sop_estimate_enhance(args, forecast_type) do
+    last_year_inventory = 100
+
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    |> Enum.reduce([], fn month, acc ->
+      sf = sf_by_month_enhance(1, forecast_type, month)
+      pp = product_plan_by_month("lunar_cake", month)
+      cap = capacity("lunar_cake", month)
+      working_days()
+
+      create_sop(%{
+        month: month,
+        capacity: cap,
+        year: 2021,
+        utilization: pp / cap,
+        sales_id: args["sales_id"]
+        # sales_forecast_id: get_sf(args["sales_id"], month, 2021).id
+      })
+
+      forecast_value =
+        sf
+        |> Enum.reduce([], fn itm, acc ->
+          acc ++ [itm.forecast_value]
+        end)
+        |> Enum.sum()
+
+      inventory = pp + last_year_inventory - forecast_value / length(sf)
+
+      acc ++
+        [
+          %{
+            month: month,
+            forecast_value: forecast_value / length(sf),
+            production_plan: pp,
+            capacity: cap,
+            working_days: 21,
+            utilization: pp / cap,
+            inventory: inventory
+          }
+        ]
+    end)
+  end
 end

@@ -41,7 +41,12 @@ alias Scm.Schema.{
   Solution,
   Inventory,
   SupplierStatus,
-  NewBom
+  NewBom,
+  Likelihood,
+  Consequence,
+  Risk,
+  Solutions,
+  RiskSolution
 }
 
 Repo.insert!(%Inventory{
@@ -440,84 +445,84 @@ Repo.insert!(%Market{
 Repo.insert!(%ProductPlan{
   month: 1,
   year: 2021,
-  quantity: 4010,
+  quantity: 4010.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 2,
   year: 2021,
-  quantity: 3300,
+  quantity: 3300.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 3,
   year: 2021,
-  quantity: 2700,
+  quantity: 2700.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 4,
   year: 2021,
-  quantity: 2270,
+  quantity: 2270.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 5,
   year: 2021,
-  quantity: 2400,
+  quantity: 2400.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 6,
   year: 2021,
-  quantity: 2450,
+  quantity: 2450.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 7,
   year: 2021,
-  quantity: 2300,
+  quantity: 2300.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 8,
   year: 2021,
-  quantity: 2340,
+  quantity: 2340.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 9,
   year: 2021,
-  quantity: 2310,
+  quantity: 2310.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 10,
   year: 2021,
-  quantity: 2100,
+  quantity: 2100.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 11,
   year: 2021,
-  quantity: 2050,
+  quantity: 2050.0,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 12,
   year: 2021,
-  quantity: 4000,
+  quantity: 4000.0,
   product_type: "lunar_cake"
 })
 
@@ -2233,4 +2238,114 @@ Repo.insert!(%NewBom{
   product: "Bánh quế",
   material: "Young rice",
   quantity: 200.0
+})
+
+Repo.insert!(%Likelihood{
+  likelihood: "Very likely",
+  level: 4,
+  description: "Happens more than once a year in this industry"
+})
+
+Repo.insert!(%Likelihood{
+  likelihood: "Likely",
+  level: 3,
+  description: "Happens about once a year in this industry"
+})
+
+Repo.insert!(%Likelihood{
+  likelihood: "Unlikely",
+  level: 2,
+  description: "Happens every 10 years or more in this industry"
+})
+
+Repo.insert!(%Likelihood{
+  likelihood: "Very unlikely",
+  level: 1,
+  description: "Has only happened once in this industry"
+})
+
+Repo.insert!(%Consequence{
+  consequence: "Severe",
+  level: 4,
+  description:
+    "Impact likely to cause business to stop trading or significant financial losses felt"
+})
+
+Repo.insert!(%Consequence{
+  consequence: "High",
+  level: 3,
+  description: "Major impact on your business with large financial loss"
+})
+
+Repo.insert!(%Consequence{
+  consequence: "Moderate",
+  level: 2,
+  description: "Moderate impact on your business with some financial loss"
+})
+
+Repo.insert!(%Consequence{
+  consequence: "Low",
+  level: 1,
+  description: "Insignificant impact on your business with minimal financial loss"
+})
+
+Repo.insert!(%Consequence{
+  consequence: "Low",
+  level: 1,
+  description: "Insignificant impact on your business with minimal financial loss"
+})
+
+Repo.insert!(%Risk{
+  risk: "Cháy, hư hỏng thiết bị",
+  consequence_id: 4,
+  likelihood_id: 3
+})
+
+Repo.insert!(%Risk{
+  risk: "Công nhân gặp vấn đề sức khoẻ",
+  consequence_id: 3,
+  likelihood_id: 2
+})
+
+Repo.insert!(%Risk{
+  risk: "Cạnh tranh thị trường",
+  consequence_id: 2,
+  likelihood_id: 4
+})
+
+Repo.insert!(%Risk{
+  risk: "Nguồn năng lượng gặp sự cố",
+  consequence_id: 3,
+  likelihood_id: 2
+})
+
+Repo.insert!(%Solutions{
+  info: "",
+  solution: "Thuê nhân lực bên ngoài, giảm số lượng sản xuất",
+  type: "mechanical"
+})
+
+Repo.insert!(%Solutions{
+  info: "",
+  solution: "Thuê nhân lực bên ngoài, chấp nhận lỗ để duy trì mối quan hệ với khách hàng",
+  type: "human"
+})
+
+Repo.insert!(%Solutions{
+  info: "",
+  solution: "Thuê máy móc bên ngoài, giảm số lượng sản xuất",
+  type: "mechanical"
+})
+
+Repo.insert!(%Solutions{
+  info: "",
+  solution: "Thuê máy móc bên ngoài, chấp nhận lỗ để duy trì mối quan hệ với khách hàng",
+  type: "human"
+})
+
+Repo.insert!(%Solutions{
+  info: "",
+  solution:
+    "Giảm số lượng sản xuất, chỉ giao hàng cho các đối tác quen thuộc. Chấp nhận mất order để duy trì mối quan hệ với những khách hàng quen",
+  type: "mechanical"
 })
