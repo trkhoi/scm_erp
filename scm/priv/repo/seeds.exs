@@ -46,7 +46,8 @@ alias Scm.Schema.{
   Consequence,
   Risk,
   Solutions,
-  RiskSolution
+  RiskSolution,
+  IngredientPrice
 }
 
 Repo.insert!(%Inventory{
@@ -3598,6 +3599,76 @@ Repo.insert!(%ProductIngredient{
   product_id: 1
 })
 
+Repo.insert!(%ProductIngredient{
+  name: "flour",
+  type: "flour",
+  quantity: 250.0,
+  product_id: 2
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Iye water",
+  type: "iye_water",
+  quantity: 72.0,
+  product_id: 2
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Sugar scones",
+  type: "sugar_scones",
+  quantity: 7.0,
+  product_id: 2
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Lotus seeds",
+  type: "lotus_seeds",
+  quantity: 5.0,
+  product_id: 3
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Sweet potato",
+  type: "sweet_potato",
+  quantity: 7.0,
+  product_id: 3
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Meat",
+  type: "meat",
+  quantity: 20.0,
+  product_id: 3
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Salt eggs",
+  type: "salt_eggs",
+  quantity: 70.0,
+  product_id: 3
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Iye water",
+  type: "iye_water",
+  quantity: 110.0,
+  product_id: 4
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Sugar scones",
+  type: "sugar_scones",
+  quantity: 10.0,
+  product_id: 4
+})
+
+Repo.insert!(%ProductIngredient{
+  name: "Lotus seeds",
+  type: "lotus_seeds",
+  quantity: 4.0,
+  product_id: 4
+})
+
 Repo.insert!(%Criteria{
   name: "Cost",
   code: "C1"
@@ -4184,4 +4255,39 @@ Repo.insert!(%Solutions{
   solution:
     "Giảm số lượng sản xuất, chỉ giao hàng cho các đối tác quen thuộc. Chấp nhận mất order để duy trì mối quan hệ với những khách hàng quen",
   type: "mechanical"
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "sweet_potato",
+  price: 21_000.0
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "sugar_scones",
+  price: 14_000.0
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "salt_eggs",
+  price: 44_000.0
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "meat",
+  price: 185_000.0
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "lotus_seeds",
+  price: 120_000.0
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "iye_water",
+  price: 149_000.0
+})
+
+Repo.insert!(%IngredientPrice{
+  product: "flour",
+  price: 45_000.0
 })

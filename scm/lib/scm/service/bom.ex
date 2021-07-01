@@ -2,7 +2,7 @@ defmodule Scm.Service.Bom do
   import Ecto.Query, warn: false
   alias Scm.Repo
 
-  alias Scm.Schema.{Product, ProductIngredient, Bom, Sales, Mps, Mrp}
+  alias Scm.Schema.{Product, ProductIngredient, Bom, Sales, Mps, Mrp, IngredientPrice}
 
   def create_bom_from_sales_id(sales_id) do
     sales = Repo.get(Sales, sales_id)
@@ -30,16 +30,23 @@ defmodule Scm.Service.Bom do
       end)
   end
 
+  def get_ingredient_price(product) do
+    Repo.get_by(IngredientPrice, product: product)
+  end
+
   def get_bom(sales_id) do
     Bom
     |> select([b], b)
     |> where([b], b.sales_id == ^sales_id)
     |> Repo.all()
     |> Enum.map(fn itm ->
+      price = get_ingredient_price(itm.type)
+
       %{
         type: itm.type,
         quantity: itm.quantity,
-        id: itm.id
+        id: itm.id,
+        price: price.price
       }
     end)
   end
@@ -60,6 +67,7 @@ defmodule Scm.Service.Bom do
 
   def create_mrp(mps, args) do
     bom = get_bom_by_type(args["ingredient"], String.to_integer(args["sales_id"]))
+    sales_id = String.to_integer(args["sales_id"])
 
     mps
     |> Enum.map(fn itm ->
@@ -91,7 +99,7 @@ defmodule Scm.Service.Bom do
           |> Repo.insert()
 
         2 ->
-          last_mrp = get_mrp(args["month"], 1)
+          last_mrp = get_mrp(args["month"], 1, sales_id)
           val = Enum.at(args["orders"], 1)
 
           attrs = %{
@@ -111,7 +119,7 @@ defmodule Scm.Service.Bom do
           |> Repo.insert()
 
         3 ->
-          last_mrp = get_mrp(args["month"], 2)
+          last_mrp = get_mrp(args["month"], 2, sales_id)
           val = Enum.at(args["orders"], 2)
 
           attrs = %{
@@ -131,7 +139,7 @@ defmodule Scm.Service.Bom do
           |> Repo.insert()
 
         4 ->
-          last_mrp = get_mrp(args["month"], 3)
+          last_mrp = get_mrp(args["month"], 3, sales_id)
           val = Enum.at(args["orders"], 3)
 
           attrs = %{
@@ -151,7 +159,7 @@ defmodule Scm.Service.Bom do
           |> Repo.insert()
 
         5 ->
-          last_mrp = get_mrp(args["month"], 4)
+          last_mrp = get_mrp(args["month"], 4, sales_id)
           val = Enum.at(args["orders"], 4)
 
           attrs = %{
@@ -173,10 +181,10 @@ defmodule Scm.Service.Bom do
     end)
   end
 
-  def get_mrp(month, week) do
+  def get_mrp(month, week, sales_id) do
     Mrp
     |> select([m], m)
-    |> where([m], m.month == ^month and m.week == ^week)
+    |> where([m], m.month == ^month and m.week == ^week and m.sales_id == ^sales_id)
     |> Repo.one()
   end
 
