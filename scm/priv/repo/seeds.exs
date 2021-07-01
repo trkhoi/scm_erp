@@ -445,85 +445,337 @@ Repo.insert!(%Market{
 Repo.insert!(%ProductPlan{
   month: 1,
   year: 2021,
-  quantity: 4010.0,
+  quantity: 4010,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 2,
   year: 2021,
-  quantity: 3300.0,
+  quantity: 3300,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 3,
   year: 2021,
-  quantity: 2700.0,
+  quantity: 2700,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 4,
   year: 2021,
-  quantity: 2270.0,
+  quantity: 2270,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 5,
   year: 2021,
-  quantity: 2400.0,
+  quantity: 2400,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 6,
   year: 2021,
-  quantity: 2450.0,
+  quantity: 2450,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 7,
   year: 2021,
-  quantity: 2300.0,
+  quantity: 2300,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 8,
   year: 2021,
-  quantity: 2340.0,
+  quantity: 2340,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 9,
   year: 2021,
-  quantity: 2310.0,
+  quantity: 2310,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 10,
   year: 2021,
-  quantity: 2100.0,
+  quantity: 2100,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 11,
   year: 2021,
-  quantity: 2050.0,
+  quantity: 2050,
   product_type: "lunar_cake"
 })
 
 Repo.insert!(%ProductPlan{
   month: 12,
   year: 2021,
-  quantity: 4000.0,
+  quantity: 4000,
   product_type: "lunar_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 1,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 2,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 3,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 4,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 5,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 6,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 7,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 8,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 9,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 10,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 11,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 12,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "pia_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 1,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 2,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 3,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 4,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 5,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 6,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 7,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 8,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 9,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 10,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 11,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 12,
+  year: 2021,
+  quantity: Enum.random(1200..1400),
+  product_type: "su_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 1,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 2,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 3,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 4,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 5,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 6,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 7,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 8,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 9,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 10,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 11,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
+})
+
+Repo.insert!(%ProductPlan{
+  month: 12,
+  year: 2021,
+  quantity: Enum.random(500..650),
+  product_type: "green_cake"
 })
 
 Repo.insert!(%Storage{

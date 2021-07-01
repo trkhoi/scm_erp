@@ -5,7 +5,7 @@ defmodule Scm.Schema.ProductPlan do
   schema "product_plan" do
     field(:month, :integer)
     field(:year, :integer)
-    field(:quantity, :float)
+    field(:quantity, :integer)
     field(:product_type, :string)
 
     timestamps()
