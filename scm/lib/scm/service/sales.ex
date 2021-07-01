@@ -4,6 +4,10 @@ defmodule Scm.Service.Sales do
 
   alias Scm.Schema.{Sales, HistoricalData, Product, Market}
 
+  def get_sales(id) do
+    Repo.get(Sales, id)
+  end
+
   def get_sales_with_historical_data(args) do
     Sales
     |> select([s], s)

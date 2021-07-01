@@ -1,6 +1,18 @@
 defmodule ScmWeb.SalesView do
   use ScmWeb, :view
 
+  def render("sale.json", %{sales: sales}) do
+    %{
+      data: %{
+        unit_price: sales.unit_price,
+        remain_quantity: sales.remain_quantity,
+        id: sales.id,
+        type: sales.type,
+        name: sales.name
+      }
+    }
+  end
+
   def render("sales.json", %{sales: sales}) do
     %{
       data: %{

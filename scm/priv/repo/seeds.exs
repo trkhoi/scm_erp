@@ -165,28 +165,40 @@ Repo.insert!(%Sales{
   type: "lunar_cake",
   title: "Báo cáo bánh trung thu năm 2020",
   year: 2020,
-  description: "sample description"
+  description: "sample description",
+  unit_price: 75_000.0,
+  remain_quantity: 200.0,
+  name: "Bánh trung thu hạt sen"
 })
 
 Repo.insert!(%Sales{
   type: "pia_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description"
+  description: "sample description",
+  unit_price: 60_000.0,
+  remain_quantity: 60.0,
+  name: "Bánh pía"
 })
 
 Repo.insert!(%Sales{
   type: "su_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description"
+  description: "sample description",
+  unit_price: 5_000.0,
+  remain_quantity: 170.0,
+  name: "Bánh su"
 })
 
 Repo.insert!(%Sales{
   type: "green_cake",
   title: "Báo cáo bánh táo năm 2020",
   year: 2020,
-  description: "sample description"
+  description: "sample description",
+  unit_price: 110_000.0,
+  remain_quantity: 100.0,
+  name: "Bánh đậu xanh"
 })
 
 Repo.insert!(%Product{
