@@ -18,9 +18,9 @@ defmodule Scm.Service.Mps do
     |> Enum.reduce([], fn month, acc ->
       monthly_pp = pp_in_month(sales.type, month)
 
-      case check_exist_mps(month) do
+      case check_exist_mps(month, args["sales_id"]) do
         n when n > 0 ->
-          month_mps = get_exist_mps(month)
+          month_mps = get_exist_mps(month, args["sales_id"])
 
           acc ++
             [
@@ -37,7 +37,7 @@ defmodule Scm.Service.Mps do
             working_days: @working_days,
             mps: monthly_pp.quantity / @working_days,
             type: "daily",
-            sales_id: 1
+            sales_id: args["sales_id"]
           })
 
           acc ++
@@ -53,31 +53,31 @@ defmodule Scm.Service.Mps do
     end)
   end
 
-  def check_exist_mps(month) do
+  def check_exist_mps(month, sales_id) do
     Mps
     |> select([mps], count(mps.id))
-    |> where([mps], mps.month == ^month and mps.type == "daily")
+    |> where([mps], mps.month == ^month and mps.type == "daily" and mps.sales_id == ^sales_id)
     |> Repo.one()
   end
 
-  def get_exist_mps(month) do
+  def get_exist_mps(month, sales_id) do
     Mps
     |> select([mps], mps)
-    |> where([mps], mps.month == ^month and mps.type == "daily")
+    |> where([mps], mps.month == ^month and mps.type == "daily" and mps.sales_id == ^sales_id)
     |> Repo.one()
   end
 
-  def get_exist_mps_weekly(month) do
+  def get_exist_mps_weekly(month, sales_id) do
     Mps
     |> select([mps], mps)
-    |> where([mps], mps.month == ^month and mps.type == "weekly")
+    |> where([mps], mps.month == ^month and mps.type == "weekly" and mps.sales_id == ^sales_id)
     |> Repo.all()
   end
 
-  def check_exist_mps_weekly(month) do
+  def check_exist_mps_weekly(month, sales_id) do
     Mps
     |> select([mps], mps)
-    |> where([mps], mps.month == ^month and mps.type == "weekly")
+    |> where([mps], mps.month == ^month and mps.type == "weekly" and mps.sales_id == ^sales_id)
     |> Repo.all()
     |> length()
   end
@@ -90,9 +90,9 @@ defmodule Scm.Service.Mps do
       end)
       |> List.first()
 
-    case check_exist_mps_weekly(args["month"]) do
+    case check_exist_mps_weekly(args["month"], args["sales_id"]) do
       n when n > 0 ->
-        get_exist_mps_weekly(args["month"])
+        get_exist_mps_weekly(args["month"], args["sales_id"])
         |> Enum.reduce([], fn mps, acc ->
           acc ++
             [

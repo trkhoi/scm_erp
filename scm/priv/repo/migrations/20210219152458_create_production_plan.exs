@@ -5,7 +5,7 @@ defmodule Scm.Repo.Migrations.CreateProductPlan do
     create table(:product_plan) do
       add(:month, :integer)
       add(:year, :integer)
-      add(:quantity, :float)
+      add(:quantity, :integer)
       add(:product_type, :string)
 
       timestamps()
