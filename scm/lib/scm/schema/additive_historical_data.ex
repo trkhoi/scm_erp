@@ -10,6 +10,7 @@ defmodule Scm.Schema.AdditiveHistoricalData do
     # field(:pred, :float)
 
     belongs_to(:new_historical_data, Scm.Schema.NewHistoricalData)
+    belongs_to(:sales, Scm.Schema.Sales)
     timestamps()
   end
 
@@ -19,5 +20,6 @@ defmodule Scm.Schema.AdditiveHistoricalData do
     additive_historical_data
     |> cast(attrs, @attrs)
     |> foreign_key_constraint(:new_historical_data_id)
+    |> foreign_key_constraint(:sales_id)
   end
 end

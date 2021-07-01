@@ -68,13 +68,6 @@ defmodule ScmWeb.Router do
       post("/:sales_id/mrp", BomController, :create_mrp)
       get("/:sales_id/mrp", BomController, :index_mrp)
 
-      # scope "/:sales_id/sop/" do
-      #   get("/:sop_id/sop_componnent/", SopComponentController, :index)
-      #   get("/:sop_id/sop_componnent/:id", SopComponentController, :show)
-      #   post("/:sop_id/sop_componnent/", SopComponentController, :create)
-      #   put("/:sop_id/sop_componnent/:id", SopComponentController, :update)
-      # end
-
       get("/:sales_id/detail_scheduling", MpsController, :schedule)
       post("/:sales_id/detail_scheduling", MpsController, :create_schedule)
       put("/:sales_id/detail_scheduling/:id", MpsController, :update_schedule)
@@ -96,34 +89,6 @@ defmodule ScmWeb.Router do
       get("/additive", SalesForecastController, :index_additive)
     end
   end
-
-  # scope "/api/v1", ScmWeb do
-  #   pipe_through(:browser)
-
-  #   get("/", PageController, :index)
-  #   get("/hello", HelloController, :index)
-
-  # scope "/sales" do
-  #   get("/finance_statstic", SalesController, :finance_statistic)
-
-  #   scope "/historical_data" do
-  #     get("/", SalesController, :sales_report)
-  #   end
-
-  #   scope "/compare_market" do
-  #     get("/", SalesController, :evaluate_market)
-  #   end
-  # end
-
-  # scope "/sales_forecast" do
-  #   get("/", SalesForecastController, :sales_forecast)
-  # end
-  # end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", ScmWeb do
-  #   pipe_through :api
-  # end
 
   # Enables LiveDashboard only for development
   #
