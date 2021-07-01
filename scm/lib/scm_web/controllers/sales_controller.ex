@@ -20,4 +20,9 @@ defmodule ScmWeb.SalesController do
     fs = SalesService.finance_statistic(args)
     render(conn, "finance_statistic.json", %{fs: fs})
   end
+
+  def show(conn, args) do
+    sales = SalesService.get_sales(args["sales_id"])
+    render(conn, "sale.json", %{sales: sales})
+  end
 end

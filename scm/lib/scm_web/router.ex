@@ -48,6 +48,7 @@ defmodule ScmWeb.Router do
     end
 
     scope "/sales" do
+      get("/:sales_id", SalesController, :show)
       get("/finance_statstic", SalesController, :finance_statistic)
 
       scope "/historical_data" do
