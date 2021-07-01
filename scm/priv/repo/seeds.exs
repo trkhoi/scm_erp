@@ -1210,6 +1210,9 @@ Repo.insert!(%NewHistoricalData{
   baseline: 0.0,
   trend: 0.0,
   season: 1.0095955647167532,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 1.0095955647167532,
   sales_id: 1
 })
 
@@ -1222,6 +1225,9 @@ Repo.insert!(%NewHistoricalData{
   baseline: 0.0,
   trend: 0.0,
   season: 0.9939583481413036,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9939583481413036,
   sales_id: 1
 })
 
@@ -1234,6 +1240,9 @@ Repo.insert!(%NewHistoricalData{
   baseline: 0.0,
   trend: 0.0,
   season: 0.9902622787689246,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9902622787689246,
   sales_id: 1
 })
 
@@ -1246,6 +1255,9 @@ Repo.insert!(%NewHistoricalData{
   baseline: 3517.24,
   trend: 0.0,
   season: 1.0061838083730188,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9902622787689246,
   sales_id: 1
 })
 
@@ -1711,6 +1723,1578 @@ Repo.insert!(%NewHistoricalData{
   quantity: 3779,
   description: "sample description",
   sales_id: 1
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2019,
+  quantity: 512,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 1.0095955647167532,
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2019,
+  quantity: 514,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9939583481413036,
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2019,
+  quantity: 556,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9902622787689246,
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2019,
+  quantity: 571,
+  description: "sample description",
+  baseline: 553.29,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  baseline_add: 553.29,
+  trend_add: 0.0,
+  season_add: 1.0061838083730188,
+  sales_id: 2
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  forecast_type: "additive",
+  new_historical_data_id: 53
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  forecast_type: "additive",
+  new_historical_data_id: 54
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  forecast_type: "additive",
+  new_historical_data_id: 55
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 3517.24,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  forecast_type: "additive",
+  new_historical_data_id: 56
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 2
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2019,
+  quantity: 512,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 1.0095955647167532,
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2019,
+  quantity: 514,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9939583481413036,
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2019,
+  quantity: 556,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9902622787689246,
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2019,
+  quantity: 571,
+  description: "sample description",
+  baseline: 1234.56,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  baseline_add: 1234.56,
+  trend_add: 0.0,
+  season_add: 1.0061838083730188,
+  sales_id: 3
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  forecast_type: "additive",
+  new_historical_data_id: 105
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  forecast_type: "additive",
+  new_historical_data_id: 106
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  forecast_type: "additive",
+  new_historical_data_id: 107
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 3517.24,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  forecast_type: "additive",
+  new_historical_data_id: 108
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(1170..1300),
+  description: "sample description",
+  sales_id: 3
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2019,
+  quantity: 512,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 1.0095955647167532,
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2019,
+  quantity: 514,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9939583481413036,
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2019,
+  quantity: 556,
+  description: "sample description",
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  baseline_add: 0.0,
+  trend_add: 0.0,
+  season_add: 0.9902622787689246,
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2019,
+  quantity: 571,
+  description: "sample description",
+  baseline: 553.29,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  baseline_add: 553.29,
+  trend_add: 0.0,
+  season_add: 1.0061838083730188,
+  sales_id: 4
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 1.0095955647167532,
+  forecast_type: "additive",
+  new_historical_data_id: 157
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9939583481413036,
+  forecast_type: "additive",
+  new_historical_data_id: 158
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 0.0,
+  trend: 0.0,
+  season: 0.9902622787689246,
+  forecast_type: "additive",
+  new_historical_data_id: 159
+})
+
+Repo.insert!(%AdditiveHistoricalData{
+  baseline: 3517.24,
+  trend: 0.0,
+  season: 1.0061838083730188,
+  forecast_type: "additive",
+  new_historical_data_id: 160
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 1,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 2,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 3,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 4,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 5,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 6,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 7,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 8,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 9,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 10,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 11,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 1,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 2,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 3,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
+})
+
+Repo.insert!(%NewHistoricalData{
+  week: 4,
+  month: 12,
+  year: 2020,
+  quantity: Enum.random(470..650),
+  description: "sample description",
+  sales_id: 4
 })
 
 Repo.insert!(%ProductIngredient{
