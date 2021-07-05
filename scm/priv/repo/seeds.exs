@@ -4216,24 +4216,28 @@ Repo.insert!(%Consequence{
 
 Repo.insert!(%Risk{
   risk: "Cháy, hư hỏng thiết bị",
+  status: "active",
   consequence_id: 4,
   likelihood_id: 3
 })
 
 Repo.insert!(%Risk{
   risk: "Công nhân gặp vấn đề sức khoẻ",
+  status: "active",
   consequence_id: 3,
   likelihood_id: 2
 })
 
 Repo.insert!(%Risk{
   risk: "Cạnh tranh thị trường",
+  status: "active",
   consequence_id: 2,
   likelihood_id: 4
 })
 
 Repo.insert!(%Risk{
   risk: "Nguồn năng lượng gặp sự cố",
+  status: "inactive",
   consequence_id: 3,
   likelihood_id: 2
 })
