@@ -21,7 +21,8 @@ defmodule Scm.Service.Replan do
         id: itm.id,
         risk: itm.risk,
         rating: rating,
-        description: evaluate_description(rating)
+        description: evaluate_description(rating),
+        status: itm.status
       }
     end)
   end

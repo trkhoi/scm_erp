@@ -4,13 +4,14 @@ defmodule Scm.Schema.Risk do
 
   schema "risk" do
     field(:risk, :string)
+    field(:status, :string)
 
     belongs_to(:consequence, Scm.Schema.Consequence)
     belongs_to(:likelihood, Scm.Schema.Likelihood)
     timestamps()
   end
 
-  @attrs [:consequence_id, :likelihood_id, :risk]
+  @attrs [:consequence_id, :likelihood_id, :risk, :status]
 
   def changeset(risk, attrs) do
     risk

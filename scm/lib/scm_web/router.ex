@@ -47,17 +47,12 @@ defmodule ScmWeb.Router do
     resources "/functional_planning", FunctionalAreaController, only: [:index, :create, :update] do
     end
 
+    get("/historical_data", SalesController, :sales_report)
+    get("/finance_statstic", SalesController, :finance_statistic)
+    get("/compare_market", SalesController, :evaluate_market)
+
     scope "/sales" do
       get("/:sales_id", SalesController, :show)
-      get("/finance_statstic", SalesController, :finance_statistic)
-
-      scope "/historical_data" do
-        get("/", SalesController, :sales_report)
-      end
-
-      scope "/compare_market" do
-        get("/", SalesController, :evaluate_market)
-      end
 
       get("/:sales_id/demand_daily", MpsController, :daily_mps)
       get("/:sales_id/demand_weekly", MpsController, :weekly_mps)
