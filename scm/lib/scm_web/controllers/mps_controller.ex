@@ -9,7 +9,7 @@ defmodule ScmWeb.MpsController do
   action_fallback(ScmWeb.FallbackController)
 
   def mps(conn, args) do
-    mps = MpsService.mps()
+    mps = MpsService.mps(args)
     json(conn, %{data: mps})
   end
 

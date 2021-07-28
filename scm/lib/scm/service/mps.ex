@@ -195,7 +195,7 @@ defmodule Scm.Service.Mps do
       |> Repo.all()
   end
 
-  def mps() do
+  def mps(args) do
     Repo.all(ProductPlan)
     |> Enum.group_by(fn x -> x.product_type end)
     |> Enum.map(fn {_k, v} ->
@@ -203,16 +203,43 @@ defmodule Scm.Service.Mps do
 
       quantity =
         v
-        |> Enum.reduce([], fn x, acc ->
-          acc ++ [x.quantity]
+        |> IO.inspect()
+        |> Enum.filter(fn x ->
+          x.month == String.to_integer(args["month"])
         end)
-        |> Enum.sum()
+        |> List.first()
+
+      # |> Enum.reduce([], fn x, acc ->
+      #   acc ++ [x.quantity]
+      # end)
+      # |> Enum.sum()
 
       %{
         product: product.name,
-        quantity: quantity,
-        working_days_in_month: @working_days
+        quantity: quantity.quantity,
+        working_days_in_month: @working_days,
+        status: map_status(quantity.quantity)
       }
     end)
+  end
+
+  def map_status(quantity) when quantity > 0 and quantity <= 500 do
+    "very low"
+  end
+
+  def map_status(quantity) when quantity > 500 and quantity <= 1000 do
+    "low"
+  end
+
+  def map_status(quantity) when quantity >= 1000 and quantity < 1500 do
+    "medium"
+  end
+
+  def map_status(quantity) when quantity >= 1500 and quantity < 2000 do
+    "high"
+  end
+
+  def map_status(quantity) when quantity >= 2000 do
+    "very high"
   end
 end
