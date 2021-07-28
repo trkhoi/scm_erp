@@ -194,4 +194,25 @@ defmodule Scm.Service.Mps do
       |> preload([:product])
       |> Repo.all()
   end
+
+  def mps() do
+    Repo.all(ProductPlan)
+    |> Enum.group_by(fn x -> x.product_type end)
+    |> Enum.map(fn {_k, v} ->
+      product = List.first(v)
+
+      quantity =
+        v
+        |> Enum.reduce([], fn x, acc ->
+          acc ++ [x.quantity]
+        end)
+        |> Enum.sum()
+
+      %{
+        product: product.name,
+        quantity: quantity,
+        working_days_in_month: @working_days
+      }
+    end)
+  end
 end

@@ -7,14 +7,15 @@ defmodule Scm.Schema.ProductPlan do
     field(:year, :integer)
     field(:quantity, :integer)
     field(:product_type, :string)
+    field(:name, :string)
 
     timestamps()
   end
 
-  @attrs [:month, :year, :quantity, :product_type]
+  @attrs [:month, :year, :quantity, :product_type, :name]
 
   def changeset(product_plan, attrs) do
     product_plan
-    |> cast(attrs, [:month, :year, :quantity, :product_type])
+    |> cast(attrs, [:month, :year, :quantity, :product_type, :name])
   end
 end

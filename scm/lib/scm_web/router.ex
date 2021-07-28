@@ -51,6 +51,9 @@ defmodule ScmWeb.Router do
     get("/finance_statstic", SalesController, :finance_statistic)
     get("/compare_market", SalesController, :evaluate_market)
 
+    get("/demand", MpsController, :mps)
+    get("/order", BomController, :order)
+
     scope "/sales" do
       get("/:sales_id", SalesController, :show)
 

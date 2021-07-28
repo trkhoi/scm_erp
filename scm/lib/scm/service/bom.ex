@@ -207,4 +207,54 @@ defmodule Scm.Service.Bom do
       }
     end)
   end
+
+  def map_price() do
+    %{
+      "sweet_potato" => 10_000,
+      "sugar_scones" => 15_000,
+      "salt_eggs" => 7_000,
+      "meat" => 30_000,
+      "lotus_seeds" => 17_000,
+      "iye_water" => 4_500,
+      "flour" => 20_000
+    }
+  end
+
+  def order(args) do
+    Repo.all(Bom)
+    |> case do
+      [] ->
+        []
+
+      value when value != [] ->
+        Enum.group_by(value, fn x -> x.type end)
+        |> Enum.map(fn {_k, v} ->
+          ingredient = List.first(v)
+
+          ingredient_info =
+            ProductIngredient
+            |> select([p], p)
+            |> where([p], p.type == ^ingredient.type)
+            |> Repo.all()
+            |> List.first()
+
+          price = map_price()
+
+          quantity =
+            Enum.reduce(v, [], fn x, acc ->
+              IO.inspect(x)
+              acc ++ [x.quantity]
+            end)
+            |> Enum.sum()
+
+          %{
+            material: ingredient_info.name,
+            quantity: quantity,
+            unit_price: price[ingredient.type],
+            total_price: quantity * price[ingredient.type],
+            supplier: args["supplier"]
+          }
+        end)
+    end
+  end
 end

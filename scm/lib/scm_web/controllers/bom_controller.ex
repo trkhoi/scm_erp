@@ -31,4 +31,9 @@ defmodule ScmWeb.BomController do
 
     json(conn, %{data: mrp})
   end
+
+  def order(conn, args) do
+    order = Bom.order(args)
+    json(conn, %{data: order})
+  end
 end

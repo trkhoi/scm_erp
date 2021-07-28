@@ -8,6 +8,11 @@ defmodule ScmWeb.MpsController do
 
   action_fallback(ScmWeb.FallbackController)
 
+  def mps(conn, args) do
+    mps = MpsService.mps()
+    json(conn, %{data: mps})
+  end
+
   def daily_mps(conn, args) do
     mps_daily = MpsService.mps_daily(args)
     render(conn, "mps_daily.json", %{mps_daily: mps_daily})
