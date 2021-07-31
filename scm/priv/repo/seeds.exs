@@ -435,25 +435,33 @@ Repo.insert!(%HistoricalData{
 })
 
 Repo.insert!(%Market{
-  company: "Công ty A",
+  company: "MY SCM",
   code: "a_com",
   product_type: "lunar_cake",
   price: 45_000.0
 })
 
 Repo.insert!(%Market{
-  company: "Công ty B",
+  company: "Kinh Đô",
   code: "b_com",
   product_type: "lunar_cake",
   price: 50_000.0
 })
 
 Repo.insert!(%Market{
-  company: "Công ty C",
+  company: "Hải Hà",
   code: "c_com",
   product_type: "lunar_cake",
   price: 37_000.0
 })
+
+Repo.insert!(%Market{
+  company: "Phương Nam",
+  code: "d_com",
+  product_type: "lunar_cake",
+  price: 37_000.0
+})
+
 
 Repo.insert!(%ProductPlan{
   month: 1,

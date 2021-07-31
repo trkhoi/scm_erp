@@ -185,7 +185,7 @@ defmodule Scm.Service.StatisticalForecast do
           v_now = beta * (u_now - uv.baseline_add) + (1 - beta) * uv.trend_add
 
           s_now =
-            gamma * (y.new_historical_data.quantity - uv.baseline_add) +
+            gamma * (y.new_historical_data.quantity - uv.baseline_add - uv.trend_add) +
               (1 - gamma) * s.season_add
 
           attrs = %{
