@@ -83,6 +83,8 @@ defmodule Scm.Service.Mps do
   end
 
   def mps_weekly(mps_daily, args) do
+    mps_p_daily = String.to_integer(args["quantity"]) / @working_days
+
     mps_daily_with_month =
       mps_daily
       |> Enum.filter(fn mps ->
@@ -117,12 +119,12 @@ defmodule Scm.Service.Mps do
                 create_mps(%{
                   week: week,
                   sales_id: String.to_integer(args["sales_id"]),
-                  mps: mps_daily_with_month.daily_mps,
+                  mps: mps_p_daily,
                   month: mps_daily_with_month.month,
                   type: "weekly",
                   working_days_in_week: 1,
                   working_days: mps_daily_with_month.working_days_in_month,
-                  monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                  monthly_demand: String.to_integer(args["quantity"])
                 })
 
                 accs ++
@@ -130,11 +132,11 @@ defmodule Scm.Service.Mps do
                     %{
                       week: week,
                       sales_id: String.to_integer(args["sales_id"]),
-                      weekly_demand: mps_daily_with_month.daily_mps,
+                      weekly_demand: mps_p_daily,
                       month: mps_daily_with_month.month,
                       working_days_in_week: 1,
                       working_days: mps_daily_with_month.working_days_in_month,
-                      monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                      monthly_demand: String.to_integer(args["quantity"])
                     }
                   ]
 
@@ -142,12 +144,12 @@ defmodule Scm.Service.Mps do
                 create_mps(%{
                   week: week,
                   sales_id: String.to_integer(args["sales_id"]),
-                  mps: mps_daily_with_month.daily_mps * 5,
+                  mps: mps_p_daily * 5,
                   month: mps_daily_with_month.month,
                   type: "weekly",
                   working_days_in_week: 5,
                   working_days: mps_daily_with_month.working_days_in_month,
-                  monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                  monthly_demand: String.to_integer(args["quantity"])
                 })
 
                 accs ++
@@ -155,11 +157,11 @@ defmodule Scm.Service.Mps do
                     %{
                       week: week,
                       sales_id: String.to_integer(args["sales_id"]),
-                      weekly_demand: mps_daily_with_month.daily_mps * 5,
+                      weekly_demand: mps_p_daily * 5,
                       month: mps_daily_with_month.month,
                       working_days_in_week: 1,
                       working_days: mps_daily_with_month.working_days_in_month,
-                      monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                      monthly_demand: String.to_integer(args["quantity"])
                     }
                   ]
             end
