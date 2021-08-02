@@ -85,6 +85,12 @@ defmodule Scm.Service.Mps do
   def mps_weekly(mps_daily, args) do
     mps_daily_with_month = String.to_integer(args["quantity"]) / @working_days
 
+    mps_daily_with_month_obj =
+      mps_daily
+      |> Enum.filter(fn mps ->
+        mps.month == String.to_integer(args["month"])
+      end)
+      |> List.first()
 
 
     case check_exist_mps_weekly(args["month"], args["sales_id"]) do
@@ -114,7 +120,7 @@ defmodule Scm.Service.Mps do
                 create_mps(%{
                   week: week,
                   sales_id: String.to_integer(args["sales_id"]),
-                  mps: mps_daily_with_month,
+                  mps: mps_daily_with_month_obj.month,
                   month: String.to_integer(args["month"]),
                   type: "weekly",
                   working_days_in_week: 1,
@@ -128,7 +134,7 @@ defmodule Scm.Service.Mps do
                       week: week,
                       sales_id: String.to_integer(args["sales_id"]),
                       weekly_demand: mps_daily_with_month,
-                      month: String.to_integer(args["month"]),
+                      mps: mps_daily_with_month_obj.month,
                       working_days_in_week: 1,
                       working_days:  @working_days,
                       monthly_demand: String.to_integer(args["quantity"])
@@ -140,7 +146,7 @@ defmodule Scm.Service.Mps do
                   week: week,
                   sales_id: String.to_integer(args["sales_id"]),
                   mps: mps_daily_with_month * 5,
-                  month: String.to_integer(args["month"]),
+                  mps: mps_daily_with_month_obj.month,
                   type: "weekly",
                   working_days_in_week: 5,
                   working_days:  @working_days,
@@ -153,7 +159,7 @@ defmodule Scm.Service.Mps do
                       week: week,
                       sales_id: String.to_integer(args["sales_id"]),
                       weekly_demand: mps_daily_with_month * 5,
-                      month: String.to_integer(args["month"]),
+                      mps: mps_daily_with_month_obj.month,
                       working_days_in_week: 1,
                       working_days:  @working_days,
                       monthly_demand: String.to_integer(args["quantity"])
