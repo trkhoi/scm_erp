@@ -83,12 +83,15 @@ defmodule Scm.Service.Mps do
   end
 
   def mps_weekly(mps_daily, args) do
-    mps_daily_with_month =
+    mps_daily_with_month = String.to_integer(args["quantity"]) / @working_days
+
+    mps_daily_with_month_obj =
       mps_daily
       |> Enum.filter(fn mps ->
         mps.month == String.to_integer(args["month"])
       end)
       |> List.first()
+
 
     case check_exist_mps_weekly(args["month"], args["sales_id"]) do
       n when n > 0 ->
@@ -103,7 +106,7 @@ defmodule Scm.Service.Mps do
                 month: mps.month,
                 working_days_in_week: mps.working_days_in_week,
                 working_days: mps.working_days,
-                monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                monthly_demand: String.to_integer(args["quantity"]),
               }
             ]
         end)
@@ -117,12 +120,12 @@ defmodule Scm.Service.Mps do
                 create_mps(%{
                   week: week,
                   sales_id: String.to_integer(args["sales_id"]),
-                  mps: mps_daily_with_month.daily_mps,
-                  month: mps_daily_with_month.month,
+                  mps: mps_daily_with_month_obj.month,
+                  month: String.to_integer(args["month"]),
                   type: "weekly",
                   working_days_in_week: 1,
-                  working_days: mps_daily_with_month.working_days_in_month,
-                  monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                  working_days: @working_days,
+                  monthly_demand: String.to_integer(args["quantity"])
                 })
 
                 accs ++
@@ -130,11 +133,11 @@ defmodule Scm.Service.Mps do
                     %{
                       week: week,
                       sales_id: String.to_integer(args["sales_id"]),
-                      weekly_demand: mps_daily_with_month.daily_mps,
-                      month: mps_daily_with_month.month,
+                      weekly_demand: mps_daily_with_month,
+                      mps: mps_daily_with_month_obj.month,
                       working_days_in_week: 1,
-                      working_days: mps_daily_with_month.working_days_in_month,
-                      monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                      working_days:  @working_days,
+                      monthly_demand: String.to_integer(args["quantity"])
                     }
                   ]
 
@@ -142,12 +145,12 @@ defmodule Scm.Service.Mps do
                 create_mps(%{
                   week: week,
                   sales_id: String.to_integer(args["sales_id"]),
-                  mps: mps_daily_with_month.daily_mps * 5,
-                  month: mps_daily_with_month.month,
+                  mps: mps_daily_with_month * 5,
+                  mps: mps_daily_with_month_obj.month,
                   type: "weekly",
                   working_days_in_week: 5,
-                  working_days: mps_daily_with_month.working_days_in_month,
-                  monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                  working_days:  @working_days,
+                  monthly_demand: String.to_integer(args["quantity"])
                 })
 
                 accs ++
@@ -155,11 +158,11 @@ defmodule Scm.Service.Mps do
                     %{
                       week: week,
                       sales_id: String.to_integer(args["sales_id"]),
-                      weekly_demand: mps_daily_with_month.daily_mps * 5,
-                      month: mps_daily_with_month.month,
+                      weekly_demand: mps_daily_with_month * 5,
+                      mps: mps_daily_with_month_obj.month,
                       working_days_in_week: 1,
-                      working_days: mps_daily_with_month.working_days_in_month,
-                      monthly_demand: mps_daily_with_month.daily_mps * @working_days
+                      working_days:  @working_days,
+                      monthly_demand: String.to_integer(args["quantity"])
                     }
                   ]
             end
